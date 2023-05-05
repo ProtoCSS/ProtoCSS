@@ -1,0 +1,127 @@
+/* Base styles */
+@fs: 16px;
+@ff: "Roboto", sans-serif;
+@c: #333;
+@!blue: #2196F3;
+
+/* Layout */
+.container {
+    @w: 80%;
+    @m: 0 auto;
+    @c: %!blue;
+}
+
+.header {
+    @bg: #f5f5f5;
+    @p: 20px 0;
+    @d: flex;
+    @jc: space-between;
+    @ai: center;
+}
+
+/* Navigation */
+.nav {
+    @d: flex;
+}
+
+.nav-item {
+    @m: 0 10px;
+    @fs: 14px;
+    @c: &blue;
+}
+
+.nav-item:hover {
+    @c: #333;
+}
+
+/* Main content */
+.main {
+    @d: flex;
+    @p: 20px 0;
+}
+
+.sidebar {
+    @w: 25%;
+    @bg: #eaeaea;
+    @p: 20px;
+    @d: flex;
+    @fld: column;
+}
+
+@!red: #f44336;
+.sidebar-item {
+    @m: 0 0 10px 0;
+    @c: %!red;
+    @fs: 14px;
+}
+
+.article {
+    @w: 75%;
+    @p: 20px;
+    @bg: #ffffff;
+    @ml: 20px;
+}
+
+.article-title {
+    @fs: 24px;
+    @fw: bold;
+    @m: 0 0 10px 0;
+}
+
+.article-body {
+    @lh: 1.6;
+}
+
+/* Footer */
+.footer {
+    @bg: #222;
+    @c: #fff;
+    @fs: 14px;
+    @p: 20px;
+    @ta: center;
+}
+
+.footer-link {
+    @c: #ccc;
+}
+
+.footer-link:hover {
+    @c: #fff;
+}
+
+/* Vanilla CSS */
+body {
+    @bg: #222;
+    @c: #fff;
+    @fs: 14px;
+    @p: 20px;
+    @ta: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.75em;
+}
+
+#logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    @bg: #f5f5f5;
+    @p: 20px 0;
+    @d: flex;
+    @jc: space-between;
+    @ai: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
