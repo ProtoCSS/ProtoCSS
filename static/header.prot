@@ -1,0 +1,18 @@
+/* header.prot */
+
+@!header-color: #2a9d8f;
+
+header {
+  background-color: %!header-color;
+  @p: 20px 0;
+}
+
+nav a {
+  @c: white;
+  @td: none;
+  margin: 0 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}

@@ -120,4 +120,4 @@ if __name__ == '__main__':
         converter = ProtoCSS()
         css = converter.convert(protoCSS)
         print(css)
-        # write_css_file(output_filename, css)
+        write_css_file(output_filename, css)
