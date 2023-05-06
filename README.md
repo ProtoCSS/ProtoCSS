@@ -8,17 +8,18 @@ The ProtoCSS framework offers a comprehensive set of user-friendly features desi
 * **Efficient Variable Handling:** Simplify working with dynamic values using ProtoCSS variables, which are seamlessly converted and used within your code.
 * **Reusable Style Groups:** Create and utilize style groups to minimize repetition and improve maintainability within your CSS code.
 * **Shorthand Property Expansion:** Save time and effort by employing shorthand properties, which are automatically expanded to their full equivalents by the framework.
-* **Media Query Simplification:** Leverage the @mq keyword for a more concise and readable method of defining media queries.
+* **Media Query Simplification:** Leverage the `@mq` keyword for a more concise and readable method of defining media queries.
 * **Flexible Integration:** Effortlessly blend the advanced features of ProtoCSS with standard CSS code, providing a seamless integration experience.
 * **Enhanced Efficiency:** Benefit from the high speed and efficiency of the ProtoCSS framework, optimizing your workflow for maximum productivity.
 
 These accessible and powerful features make the ProtoCSS framework an exceptional choice for developers seeking to streamline their CSS development process.
 
-Please refer to the docs for more information.
+## Additional Information
+For more details on using ProtoCSS, check out the documentation. It covers various features and will help you get the most out of the framework.
 
 ---
 ## Contributing
-Contributions to ProtoCSS are welcome! Please see our contributing guidelines for more information.
+I'm appreciate and value contributions to the ProtoCSS project. Whether you're a seasoned developer or a newcomer, your input can help me improve and grow the framework. For more information on how to contribute, please consult our contributing guidelines.
 
 ## License
-ProtoCSS is released under the MIT License.
+ProtoCSS is distributed under the terms of the MIT License, which grants permission for usage, modification, and distribution of the software, while maintaining its original copyright. For more details, please refer to the LICENSE file included in the project repository.
