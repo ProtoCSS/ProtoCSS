@@ -17,7 +17,6 @@ These accessible and powerful features make the ProtoCSS framework an exceptiona
 ## Additional Information
 For more details on using ProtoCSS, check out the documentation. It covers various features and will help you get the most out of the framework.
 
----
 ## Contributing
 I'm appreciate and value contributions to the ProtoCSS project. Whether you're a seasoned developer or a newcomer, your input can help me improve and grow the framework. For more information on how to contribute, please consult our contributing guidelines.
 
