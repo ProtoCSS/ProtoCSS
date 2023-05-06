@@ -142,4 +142,5 @@ shorthand_properties = {
     "@tran": "translate",
     "@uc": "unicode-bidi",
     "@wr": "writing-mode",
+    "@tdir": "text-direction",
 }

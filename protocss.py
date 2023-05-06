@@ -1,22 +1,41 @@
+import os
 import re
-import protocss_dict
+from helper import protocss_dict
 
 
 class ProtoCSS:
-    """
-    The ProtoCSS class offers a powerful and streamlined solution for converting ProtoCSS code into standard CSS.
-    Designed to enhance your workflow, ProtoCSS seamlessly integrates with vanilla CSS while simplifying the handling
-    of variables, shorthand properties, and other unique features of the ProtoCSS language.
-    """
 
     def __init__(self):
         self.shorthand_properties = protocss_dict.shorthand_properties
 
-    def convert(self, protocss: str) -> str:
-        # Extract and store variables
+    def convert(self, protocss: str, base_path: str = "static/") -> str:
+        def process_import(match):
+            imported_file = match.group(1)
+
+            if imported_file.startswith("http://") or imported_file.startswith("https://"):
+                return f'@import url("{imported_file}");'
+            elif imported_file.endswith(".css"):
+                imported_file_path = os.path.join(f"{base_path}css/", imported_file)
+                if os.path.isfile(imported_file_path):
+                    return f'@import url("{imported_file_path}");'
+                else:
+                    return f"/* Error: File '{imported_file}' not found in static/css. */"
+            elif imported_file.endswith(".prot"):
+                imported_file_path = os.path.join(f"{base_path}/", imported_file)
+                if os.path.isfile(imported_file_path):
+                    # imported_file_content = read_protocss_file(imported_file_path)
+                    # return imported_file_content
+                    imported_file = imported_file.replace(".prot", ".css")
+                    return f'@import url("static/css/{imported_file}");'
+                else:
+                    return f"/* Error: File '{imported_file}' not found in static/. */"
+            else:
+                return f"/* Error: Invalid import '{imported_file}'. */"
+
+        protocss = re.sub(r'import\s+"([^"]+)";', process_import, protocss)
+
         variable_pattern = re.compile(r"@!(\w+)\s*:\s*([^;]+);")
         variables = dict(variable_pattern.findall(protocss))
-        # print(variables)
 
         # Convert ProtoCSS variables to CSS custom properties
         css_vars = "\n".join([f"--{key}: {value};" for key, value in variables.items()])
@@ -30,9 +49,45 @@ class ProtoCSS:
 
         protocss = re.sub(r"%!(\w+)", replace_var, protocss)
 
+        # extract group definitions and store them in a dictionary
+        group_pattern = re.compile(r"group@(\w+)\s*\{([^}]+)\}")
+        groups = {}
+        for match in group_pattern.findall(protocss):
+            group_name = match[0]
+            group_styles = match[1]
+            groups[group_name] = group_styles.strip()
+
+        def replace_group(match):
+            group_name = match.group(1)
+            if group_name not in groups:
+                return f"/* Group '{group_name}' not found. */"
+            group_styles = groups[group_name]
+            # Expand shorthand properties within the group
+            for shorthand, full_property in self.shorthand_properties.items():
+                pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
+                group_styles = pattern.sub(f"{full_property}: \\1;", group_styles)
+            return group_styles
+
+        protocss = re.sub(r"group@(\w+);", replace_group, protocss)
+        protocss = re.sub(group_pattern, "", protocss)  # Remove group declarations
+
         for shorthand, full_property in self.shorthand_properties.items():
             pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
             protocss = pattern.sub(f"{full_property}: \\1;", protocss)
+
+        def expand_media_query(match):
+            conditions = match.group(1).split("+")
+            expanded_conditions = []
+            for condition in conditions:
+                expanded_condition = condition.strip()
+                for shorthand, full_property in self.shorthand_properties.items():
+                    pattern = re.compile(rf"{shorthand}\s*:\s*(.+)")
+                    expanded_condition = pattern.sub(f"{full_property}: \\1", expanded_condition)
+                expanded_conditions.append(expanded_condition)
+            conditions = " and ".join(expanded_conditions)
+            return f"@media {conditions} {{"
+
+        protocss = re.sub(r"@mq\s+([^{}]+){", expand_media_query, protocss)
 
         return protocss
 
@@ -55,8 +110,9 @@ def write_css_file(filename: str, css: str) -> None:
 
 
 if __name__ == '__main__':
-    input_filename = "style.prot"
-    output_filename = "style.css"
+    input_filename = "static/style.prot"
+    fn = os.path.splitext(os.path.basename(input_filename))[0]
+    output_filename = f"static/css/{fn}.css"
 
     protoCSS = read_protocss_file(input_filename)
 
