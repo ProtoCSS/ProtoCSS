@@ -1,5 +1,5 @@
 # ProtoCSS
-ProtoCSS is a powerful and easy-to-use superset of CSS that provides a streamlined solution for converting ProtoCSS code into standard CSS. It simplifies the handling of variables, shorthand properties, and other unique features of the ProtoCSS language, while allowing for seamless integration with vanilla CSS. ProtoCSS is designed for speed and efficiency, making it a great choice for developers who want to streamline their workflows.
+ProtoCSS is a robust and easy-to-use superset of CSS that provides a streamlined solution for writing style. It streamlines the management of variables, shorthand properties, reusable style groups - while allowing for seamless integration with vanilla CSS. ProtoCSS is designed for speed and efficiency, making it a great choice for developers who want to streamline their workflows.
 
 ## Features
 The ProtoCSS framework offers a comprehensive set of user-friendly features designed to enhance the experience of working with CSS for developers of all skill levels. These features include:
