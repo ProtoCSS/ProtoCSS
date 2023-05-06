@@ -7,6 +7,19 @@ The ProtoCSS Framework is designed to enhance your workflow by seamlessly integr
 
 We recommend exploring the provided examples and documentation to get a better understanding of the capabilities of the ProtoCSS Framework. If you encounter any issues or have any questions, please refer to the official Github page for support.
 
+## Features
+The ProtoCSS framework offers a comprehensive set of user-friendly features designed to enhance the experience of working with CSS for developers of all skill levels. These features include:
+
+* **Streamlined Imports:** Easily import external CSS and ProtoCSS files using Python-style import statements, managing various file types and handling errors effectively.
+* **Efficient Variable Handling:** Simplify working with dynamic values using ProtoCSS variables, which are seamlessly converted and used within your code.
+* **Reusable Style Groups:** Create and utilize style groups to minimize repetition and improve maintainability within your CSS code.
+* **Shorthand Property Expansion:** Save time and effort by employing shorthand properties, which are automatically expanded to their full equivalents by the framework.
+* **Media Query Simplification:** Leverage the @mq keyword for a more concise and readable method of defining media queries.
+* **Flexible Integration:** Effortlessly blend the advanced features of ProtoCSS with standard CSS code, providing a seamless integration experience.
+* **Enhanced Efficiency:** Benefit from the high speed and efficiency of the ProtoCSS framework, optimizing your workflow for maximum productivity.
+
+These accessible and powerful features make the ProtoCSS framework an exceptional choice for developers seeking to streamline their CSS development process.
+
 ## Examples
 Here is an example of using the ProtoCSS Framework to convert a mixed ProtoCSS and vanilla CSS code into standard CSS:
 ``` css
@@ -17,16 +30,38 @@ import "footer"; /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
 
+/* Base styles */
 @fs: 16px;
 @ff: "Roboto", sans-serif;
 @c: #333;
 @!blue: #2196F3; /* Example for variable assignment, can be placed anywhere in the code */
 
-/* Example for mixed ProtoCSS & Vanilla CSS */
+/* Layout */
 .container {
     @w: 80%;
     margin:: 0 auto;
     @c: %!blue; /* Example for variable usage */
+}
+
+group@blueishPack {
+    @m: 0;
+    @c: white;
+    @br: 10px;
+}
+
+.header {
+    group@blueishPack;
+    @bg: #f5f5f5;
+    @p: 20px 0;
+    @d: flex;
+    @jc: space-between;
+    @ai: center;
+}
+
+/* Navigation */
+.nav {
+    @d: flex;
+    group@blueishPack;
 }
 ```
 
@@ -40,28 +75,52 @@ This is equivalent to:
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"); /* Example for web import */
 @import url("static/css/header.css"); /* Example for direct .css import */
 @import url("static/css/header.css"); /* Example for direct .prot import */
-/* Error: Invalid import 'footer'. */ 
+/* Error: Invalid import 'footer'. */ /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
 
+/* Base styles */
 font-size: 16px;
 font-family: "Roboto", sans-serif;
 color: #333;
  /* Example for variable assignment, can be placed anywhere in the code */
 
-/* Example for mixed ProtoCSS & Vanilla CSS */
+/* Layout */
 .container {
     width: 80%;
     margin:: 0 auto;
     color: var(--blue); /* Example for variable usage */
 }
+
+
+
+.header {
+    margin: 0;
+    color: white;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    margin: 0;
+    color: white;
+    border-radius: 10px;
+}
 ```
 This example showcases the ability of the ProtoCSS Framework to handle imports, variables, shorthand properties, and variable usage.
 
 ## Supported Properties
-The ProtoCSS Framework provides a comprehensive list of shorthand properties and CSS attributes to simplify the styling process.
+The ProtoCSS Framework is designed to offer a comprehensive set of shorthand properties and CSS attributes, making it easier for developers to efficiently create and maintain styles. By providing a robust set of features, ProtoCSS allows you to focus on creating visually stunning and highly functional designs with greater ease and simplicity.
 
-Here is a table of the shorthand properties that the ProtoCSS currently supports:
+In order to make your styling process more streamlined, the ProtoCSS Framework supports an extensive list of shorthand properties. These shorthand properties help you write concise and easily understandable code, resulting in a more maintainable and efficient workflow.
+
+The following table showcases the shorthand properties currently supported:
 ## Basic Properties
 |ProtoCSS Syntax|CSS Property Equivalent|
 |:---: | :---: |
