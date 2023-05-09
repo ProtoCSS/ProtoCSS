@@ -5,8 +5,8 @@
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"); /* Example for web import */
 @import url("static/css/header.css"); /* Example for direct .css import */
-@import url("static/css/header.css"); /* Example for direct .prot import */
-/* Error: Invalid import 'footer'. */ /* Example for direct import without specified file-type */
+@import url("static/css/header.css"); /* Example for direct .prt import */
+@import url("static/footer.prt"); /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
 
@@ -14,7 +14,7 @@
 font-size: 16px;
 font-family: "Roboto", sans-serif;
 color: #333;
- /* Example for variable assignment, can be placed anywhere in the code */
+
 
 /* Layout */
 .container {
@@ -22,6 +22,19 @@ color: #333;
     margin:: 0 auto;
     color: var(--blue); /* Example for variable usage */
 }
+
+.container {
+    width: 100%;
+    padding: 10px;
+    &cond (@w <= 600px): {
+        width: 100%;
+        padding: 20px;
+    } ? {
+        width: 50%;
+        padding: 30px;
+    }
+}
+
 
 
 
@@ -44,10 +57,12 @@ color: #333;
     border-radius: 10px;
 }
 
+
+
 .nav-item {
     margin: 0 10px;
     font-size: 14px;
-    color: &blue;
+    color: var(--blue);
 }
 
 .nav-item:hover {
@@ -164,3 +179,4 @@ input[type="submit"] {
         margin-left: 0;
     }
 }
+

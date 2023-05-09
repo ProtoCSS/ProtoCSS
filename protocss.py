@@ -20,13 +20,19 @@ class ProtoCSS:
                     return f'@import url("{imported_file_path}");'
                 else:
                     return f"/* Error: File '{imported_file}' not found in static/css. */"
-            elif imported_file.endswith(".prot"):
+            elif imported_file.endswith(".prt"):
                 imported_file_path = os.path.join(f"{base_path}/", imported_file)
                 if os.path.isfile(imported_file_path):
                     # imported_file_content = read_protocss_file(imported_file_path)
                     # return imported_file_content
-                    imported_file = imported_file.replace(".prot", ".css")
+                    imported_file = imported_file.replace(".prt", ".css")
                     return f'@import url("static/css/{imported_file}");'
+                else:
+                    return f"/* Error: File '{imported_file}' not found in static/. */"
+            elif imported_file.endswith(""):
+                imported_file_path = os.path.join(f"{base_path}", f"{imported_file}.prt")
+                if os.path.isfile(imported_file_path):
+                    return f'@import url("{imported_file_path}");'
                 else:
                     return f"/* Error: File '{imported_file}' not found in static/. */"
             else:
@@ -110,7 +116,7 @@ def write_css_file(filename: str, css: str) -> None:
 
 
 if __name__ == '__main__':
-    input_filename = "static/style.prot"
+    input_filename = "static/style.prt"
     fn = os.path.splitext(os.path.basename(input_filename))[0]
     output_filename = f"static/css/{fn}.css"
 

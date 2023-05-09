@@ -1,6 +1,6 @@
 import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"; /* Example for web import */
 import "header.css"; /* Example for direct .css import */
-import "header.prot"; /* Example for direct .prot import */
+import "header.prt"; /* Example for direct .prt import */
 import "footer"; /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
@@ -9,7 +9,7 @@ import "footer"; /* Example for direct import without specified file-type */
 @fs: 16px;
 @ff: "Roboto", sans-serif;
 @c: #333;
-@!blue: #2196F3; /* Example for variable assignment, can be placed anywhere in the code */
+@!blue: #2196F3;
 
 /* Layout */
 .container {
@@ -17,6 +17,19 @@ import "footer"; /* Example for direct import without specified file-type */
     margin:: 0 auto;
     @c: %!blue; /* Example for variable usage */
 }
+
+.container {
+    @w: 100%;
+    @p: 10px;
+    &cond (@w <= 600px): {
+        @w: 100%;
+        @p: 20px;
+    } ? {
+        @w: 50%;
+        @p: 30px;
+    }
+}
+
 
 group@blueishPack {
     @m: 0;
@@ -39,10 +52,12 @@ group@blueishPack {
     group@blueishPack;
 }
 
+
+
 .nav-item {
     @m: 0 10px;
     @fs: 14px;
-    @c: &blue;
+    @c: %!blue;
 }
 
 .nav-item:hover {
@@ -159,3 +174,4 @@ input[type="submit"] {
         @ml: 0;
     }
 }
+
