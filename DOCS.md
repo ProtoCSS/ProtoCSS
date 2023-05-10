@@ -38,18 +38,29 @@ import "footer"; /* Example for direct import without specified file-type */
 @c: #333;
 @!blue: #2196F3;
 
+/* List below */
+list@colors: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
+list@widths: [25%, 50%, 75%, 100%];
+
+for width in widths {
+    #logo {
+        @c: black;
+        width: {width};
+        @p: 20px 0;
+        @d: flex;
+        @jc: space-between;
+        @ai: center;
+    }
+};
+
+/* For loop above */
+
 /* Layout */
 .container {
     @w: 80%;
-    margin:: 0 auto;
+    margin: 0 auto;
     @c: %!blue; /* Example for variable usage */
 }
-
-.container {
-    @w: 100%;
-    @p: 10px;
-}
-
 
 group@blueishPack {
     @m: 0;
@@ -64,12 +75,6 @@ group@blueishPack {
     @d: flex;
     @jc: space-between;
     @ai: center;
-}
-
-/* Navigation */
-.nav {
-    @d: flex;
-    group@blueishPack;
 }
 ```
 
@@ -92,21 +97,52 @@ font-size: 16px;
 font-family: "Roboto", sans-serif;
 color: #333;
 
+/* List below */
+
+#logo-25 {
+   color: black;
+   width: 25%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#logo-50 {
+   color: black;
+   width: 50%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#logo-75 {
+   color: black;
+   width: 75%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#logo-100 {
+   color: black;
+   width: 100%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+/* For loop above */
 
 /* Layout */
 .container {
     width: 80%;
-    margin:: 0 auto;
+    margin: 0 auto;
     color: var(--blue); /* Example for variable usage */
 }
-
-.container {
-    width: 100%;
-    padding: 10px;
-}
-
-
-
 
 .header {
     margin: 0;
@@ -118,24 +154,8 @@ color: #333;
     justify-content: space-between;
     align-items: center;
 }
-
-/* Navigation */
-.nav {
-    display: flex;
-    margin: 0;
-    color: white;
-    border-radius: 10px;
-}
-
-
-
-.nav-item {
-    margin: 0 10px;
-    font-size: 14px;
-    color: var(--blue);
-}
 ```
-This example showcases the ability of the ProtoCSS Preprocessor to handle imports, variables, shorthand properties, and variable usage.
+This example showcases the ability of the ProtoCSS Preprocessor to handle imports, variables, shorthand properties, lists and a for loop.
 
 ## Supported Properties
 The ProtoCSS Preprocessor is designed to offer a comprehensive set of shorthand properties and CSS attributes, making it easier for developers to efficiently create and maintain styles. By providing a robust set of features, ProtoCSS allows you to focus on creating visually stunning and highly functional designs with greater ease and simplicity.
@@ -143,7 +163,7 @@ The ProtoCSS Preprocessor is designed to offer a comprehensive set of shorthand 
 In order to make your styling process more streamlined, the ProtoCSS Preprocessor supports an extensive list of shorthand properties. These shorthand properties help you write concise and easily understandable code, resulting in a more maintainable and efficient workflow.
 
 The following table showcases the shorthand properties currently supported:
-## Basic Properties
+### Basic Properties
 |ProtoCSS Syntax|CSS Property Equivalent|
 |:---: | :---: |
 |@bg|background-color|
@@ -225,3 +245,83 @@ The following table showcases the shorthand properties currently supported:
 |@bw|border-width
 |@olc|outline-color
 |@olw|outline
+
+## Lists
+In ProtoCSS, lists are a way to group data that belongs together. They can be used to store a set of values, such as colors, font stacks, or breakpoints.
+
+### Defining a List
+To define a list in ProtoCSS, you can use the `list@` syntax, followed by the name of the list and its contents enclosed in square brackets. Here's an example:
+
+``` css
+list@colors: ["red", "green", "blue"];
+```
+In this example, we've defined a list called `colors` that contains three color values.
+
+### Using a List
+Once you've defined a list, you can use it throughout your ProtoCSS code by referencing its name. You can access individual items in the list using square bracket notation and an index. The index starts at zero, so the first item in the list has an index of 0, the second item has an index of 1, and so on.
+
+Here's an example that uses the colors list we defined earlier:
+
+``` css
+.box {
+  @c: list@colors[0];
+}
+```
+
+In this example, we've applied a background color to a box element using the first color in the colors list.
+
+You can also use the for loop syntax to iterate over a list and generate a set of CSS rules for each item. Here's an example that uses the colors list again:
+
+``` css
+for color in colors {
+  .container {
+    @c: {color};
+  }
+}
+```
+In this example, we're using a for loop to generate a set of CSS rules for each color in the colors list. The @{color} syntax is used to access the current color value in the loop and interpolate it into the CSS rule.
+
+## For loops
+The `for` loop is a powerful feature of ProtoCSS that enables you to generate CSS rules with varying properties. This can be especially useful for creating theme variants, responsive designs, or any other rule sets that follow a consistent pattern.
+
+Here's an example of how you can use a `for` loop in ProtoCSS:
+
+``` css
+list@colors: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
+
+for color in colors {
+    .color {
+        @bg: {color};
+        @c: white;
+        padding: 10px;
+    }
+}
+```
+
+In this example, we have defined a list called `colors`, which contains ten color values. We then use a for loop to iterate over the list and generate a set of CSS rules for each color. The `{}` syntax is used to interpolate the value of the color variable into the generated CSS rule, resulting in the creation of ten color classes with varying background colors.
+
+The resulting CSS output would look like this:
+
+``` css
+.color-red {
+    background-color: red;
+    color: white;
+    padding: 10px;
+}
+
+.color-green {
+    background-color: green;
+    color: white;
+    padding: 10px;
+}
+
+.color-blue {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+}
+
+/* ...and so on for all ten colors */
+```
+
+As you can see, using a for loop in ProtoCSS can greatly simplify the process of generating repetitive CSS rules, and can be used in a wide range of scenarios.
