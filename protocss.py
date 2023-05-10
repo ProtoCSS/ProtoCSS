@@ -7,6 +7,7 @@ class ProtoCSS:
 
     def __init__(self):
         self.shorthand_properties = protocss_dict.shorthand_properties
+        self.lists = {}
 
     def convert(self, protocss: str, base_path: str = "static/") -> str:
         def process_import(match):
@@ -94,6 +95,101 @@ class ProtoCSS:
             return f"@media {conditions} {{"
 
         protocss = re.sub(r"@mq\s+([^{}]+){", expand_media_query, protocss)
+
+        list_pattern = re.compile(r"list@(\w+)\s*:\s*\[([^\]]+)\]")
+
+        def replace_list(match):
+            list_name = match.group(1)
+            list_values = [value.replace(" ", "") for value in match.group(2).split(',')]
+
+            # Change this line to use the list name as the key in a dictionary
+            self.lists[list_name] = list_values
+
+            if list_name not in self.lists:
+                return f"/* List '{list_name}' not found. */"
+            else:
+                return ""
+
+        # protocss = 'list@colors: ["red", "green", "blue"]\n'
+        protocss = re.sub(r"list@(\w+):\s*\[([^\]]+)\];", replace_list, protocss)
+        protocss = re.sub(list_pattern, "", protocss)
+
+
+        # def replace_for_loop(match):
+        #     iterator_name = match.group(1)
+        #     list_name = match.group(2)
+        #     selector = match.group(3).replace("{" + iterator_name + "}", "{}")
+        #     property = match.group(4)
+        #     property_value = match.group(5)
+        #     # property_block = f"{property}: {property_value};"
+        #
+        #     print(f"iterator_name: {iterator_name}")
+        #     print(f"list_name: {list_name}")
+        #     print(f"selector: {selector}")
+        #     print(f"property_block: {property} - {property_value}\n\n")
+        #     print(f"lists: {self.lists}\n\n")
+        #
+        #     for_loop_result = ""
+        #     if list_name in self.lists:
+        #         for value in self.lists[list_name]:
+        #             for_loop_result += selector.format(value) + "{\n"
+        #             for_loop_result += f"   {property}: {iterator_name if self.lists[list_name].index(value) == iterator_name else value};\n"
+        #             for_loop_result += "}\n\n"
+        #
+        #         return for_loop_result
+        #     else:
+        #         return f"/* List '{list_name}' not found. */"
+
+        def replace_for_loop(match):
+            iterator_name = match.group(1)
+            list_name = match.group(2)
+            selector = match.group(3).replace("{" + iterator_name + "}", "{}")
+            property_block = [prop for prop in str(match.group(4)).split(";")]
+
+            # print(f"iterator_name: {iterator_name}")
+            # print(f"list_name: {list_name}")
+            # print(f"selector: {selector}")
+            # print(f"property_block: {property_block}\n\n")
+            # print(f"lists: {self.lists}\n")
+            prop_list = []
+            for prop in property_block:
+                prop_list.append(prop)
+
+            # print(f"prop_list: {prop_list}\n")
+
+            for_loop_result = ""
+            if list_name in self.lists:
+                for value in self.lists[list_name]:
+                    clean_value = re.sub(r'\W+', '', value)
+                    for_loop_result += f"{selector}-{clean_value} {{\n"
+                    # print(f"values: {value}")
+                    for prop in property_block:
+                        prop = prop.strip()
+                        # print(f"prop: {prop}")
+                        for shorthand, full_property in self.shorthand_properties.items():
+                            if prop.startswith(shorthand):
+                                prop = prop.replace(shorthand, full_property)
+                                # print(f"prop: {prop}")
+
+                        if prop:
+                            prop_name, prop_value = [p.strip() for p in prop.split(":")]
+                            # print(f"prop_name: {prop_name}")
+                            # print(f"prop_value: {prop_value}\n")
+                            prop_value = prop_value.replace(f"{{{iterator_name}}}", value)
+
+
+                            for_loop_result += f"   {prop_name}: {prop_value};\n"
+                    for_loop_result += "}\n\n"
+
+                return for_loop_result
+            else:
+                return f"/* List '{list_name}' not found. */"
+
+        # for_pattern = re.compile(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+(\w+):\s*{(\w+)};\s+}\s+};")
+
+        for_pattern = re.compile(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+((.|\n)+?);\s+}\s+};", re.MULTILINE)
+
+        protocss = re.sub(for_pattern, replace_for_loop, protocss)
 
         return protocss
 

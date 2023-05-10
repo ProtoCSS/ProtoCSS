@@ -16,18 +16,56 @@ font-family: "Roboto", sans-serif;
 color: #333;
 
 
+/* List below */
+
+
+
+#logo-25 {
+   color: black;
+   width: 25%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#logo-50 {
+   color: black;
+   width: 50%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#logo-75 {
+   color: black;
+   width: 75%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+#logo-100 {
+   color: black;
+   width: 100%;
+   padding: 20px 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+
+
+/* For loop above */
+
 /* Layout */
 .container {
     width: 80%;
-    margin:: 0 auto;
+    margin: 0 auto;
     color: var(--blue); /* Example for variable usage */
 }
-
-.container {
-    width: 100%;
-    padding: 10px;
-}
-
 
 
 
