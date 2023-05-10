@@ -2,6 +2,13 @@
 
 All notable changes to the ProtoCSS project will be documented in this file. This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.2]-dev - 2023-05-10
+
+### Added
+* Support for defining and managing lists, enabling easy storage and retrieval of grouped data such as color schemes and font stacks.
+* Introduced for loops, allowing for the iterative generation of CSS rules with varying properties, greatly enhancing the ability to create theme variants, responsive designs, and consistent patterned rule sets.
+* General bug fixes.
+
 ## [0.0.1]-dev - 2023-05-06
 
 ### Added
