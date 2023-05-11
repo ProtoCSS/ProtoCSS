@@ -10,6 +10,7 @@ The ProtoCSS preprocessor offers a comprehensive set of user-friendly features d
 * **For Loop Support:** Iteratively generate CSS rules with varying properties using ProtoCSS for loop syntax. This can be especially useful for creating theme variants, responsive designs, or any other rule sets that follow a consistent pattern.
 * **Reusable Style Groups:** Create and utilize style groups to minimize repetition and improve maintainability within your CSS code.
 * **Shorthand Property Expansion:** Save time and effort by employing shorthand properties, which are automatically expanded to their full equivalents by the preprocessor.
+* **Property-Declaration Shorthands:** Take advantage of Property-Declaration shorthand properties in ProtoCSS, allowing you to write fast, concise and expressive code without sacrificing flexibility.
 * **Media Query Simplification:** Leverage the `@mq` keyword for a more concise and readable method of defining media queries.
 * **Flexible Integration:** Effortlessly blend the advanced features of ProtoCSS with standard CSS code, providing a seamless integration experience.
 * **Enhanced Efficiency:** Benefit from the high speed and efficiency of the ProtoCSS preprocessor, optimizing your workflow for maximum productivity.

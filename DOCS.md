@@ -16,6 +16,7 @@ The ProtoCSS preprocessor offers a comprehensive set of user-friendly features d
 * **For Loop Support:** Iteratively generate CSS rules with varying properties using ProtoCSS for loop syntax. This can be especially useful for creating theme variants, responsive designs, or any other rule sets that follow a consistent pattern.
 * **Reusable Style Groups:** Create and utilize style groups to minimize repetition and improve maintainability within your CSS code.
 * **Shorthand Property Expansion:** Save time and effort by employing shorthand properties, which are automatically expanded to their full equivalents by the preprocessor.
+* **Property-Declaration Shorthands:** Take advantage of Property-Declaration shorthand properties in ProtoCSS, allowing you to write fast, concise and expressive code without sacrificing flexibility.
 * **Media Query Simplification:** Leverage the `@mq` keyword for a more concise and readable method of defining media queries.
 * **Flexible Integration:** Effortlessly blend the advanced features of ProtoCSS with standard CSS code, providing a seamless integration experience.
 * **Enhanced Efficiency:** Benefit from the high speed and efficiency of the ProtoCSS preprocessor, optimizing your workflow for maximum productivity.
@@ -42,6 +43,15 @@ import "footer"; /* Example for direct import without specified file-type */
 list@colors: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
 list@widths: [25%, 50%, 75%, 100%];
 
+.example {
+    @w: list@widths[0];
+    @w: list@widths[1];
+    @w: list@widths[2];
+    @w: list@widths[3];
+    @w: list@widths[4]; /* Example for error */
+    @w100; /* Example for predefined shorthand */
+}
+
 for width in widths {
     #logo {
         @c: black;
@@ -52,18 +62,25 @@ for width in widths {
         @ai: center;
     }
 };
-
 /* For loop above */
+
+/* Predefined shorthands */
+.main-container {
+    @w100;
+    @p20;
+    @df;
+    @jcsb;
+}
 
 /* Layout */
 .container {
-    @w: 80%;
-    margin: 0 auto;
+    @w: list@widths[0]; /* Example for list access usage */
+    @tdn; /* Example for predefined shorthand */
     @c: %!blue; /* Example for variable usage */
 }
 
 group@blueishPack {
-    @m: 0;
+    @w100;
     @c: white;
     @br: 10px;
 }
@@ -71,7 +88,7 @@ group@blueishPack {
 .header {
     group@blueishPack;
     @bg: #f5f5f5;
-    @p: 20px 0;
+    @tdn;
     @d: flex;
     @jc: space-between;
     @ai: center;
@@ -87,8 +104,8 @@ This is equivalent to:
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"); /* Example for web import */
 @import url("static/css/header.css"); /* Example for direct .css import */
-@import url("static/css/header.css"); /* Example for direct .ptcss import */
-@import url("static/footer.ptcss"); /* Example for direct import without specified file-type */
+/* Error: File 'header.ptcss' not found in static/. */ /* Example for direct .ptcss import */
+/* Error: File 'footer' not found in static/. */ /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
 
@@ -97,7 +114,19 @@ font-size: 16px;
 font-family: "Roboto", sans-serif;
 color: #333;
 
+
 /* List below */
+
+
+
+.example {
+    width: 25%;
+    width: 50%;
+    width: 75%;
+    width: 100%;
+    width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
+    width: 100%; /* Example for predefined shorthand */
+}
 
 #logo-25 {
    color: black;
@@ -135,21 +164,32 @@ color: #333;
    align-items: center;
 }
 
+
 /* For loop above */
+
+/* Predefined shorthands */
+.main-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
 
 /* Layout */
 .container {
-    width: 80%;
-    margin: 0 auto;
+    width: 25%; /* Example for list access usage */
+    text-decoration: none;
     color: var(--blue); /* Example for variable usage */
 }
 
+
+
 .header {
-    margin: 0;
+    width: 100%;
     color: white;
     border-radius: 10px;
     background-color: #f5f5f5;
-    padding: 20px 0;
+    text-decoration: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -245,6 +285,31 @@ The following table showcases the shorthand properties currently supported:
 |@bw|border-width
 |@olc|outline-color
 |@olw|outline
+
+## Property-Declaration Shorthands
+Property-declaration shorthands, short for property declaration shorthands, are a set of convenient shorthand notations for commonly used CSS properties. They allow you to quickly and easily apply styling to elements without having to remember or type out the full CSS property names and values.
+
+Usage
+To apply a property-declaration shorthand, you simply need to include the corresponding shorthand notation in your CSS code. Here's an example:
+
+``` css
+.selector {
+  @w50;       /* Applies a width of 50% */
+  @h100;      /* Applies a height of 100% */
+  @fs20;      /* Applies a font-size of 20px */
+  @c000;      /* Applies a color of #000 */
+  @bds;       /* Applies a border of 1px solid */
+  @br10;      /* Applies a border-radius of 10px */
+  @p10;       /* Applies a padding of 10px */
+  @m20;       /* Applies a margin of 20px */
+  @df;        /* Applies a display of flex */
+  @jcfs;      /* Applies justify-content: flex-start */
+  @aic;       /* Applies align-items: center */
+}
+```
+
+List of supported property-declaration shorthands will be added soon.
+
 
 ## Lists
 In ProtoCSS, lists are a way to group data that belongs together. They can be used to store a set of values, such as colors, font stacks, or breakpoints.
