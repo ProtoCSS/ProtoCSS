@@ -1,11 +1,13 @@
 # ProtoCSS
-ProtoCSS is a robust and easy-to-use superset of CSS that provides a streamlined solution for writing style. It streamlines the management of variables, shorthand properties, reusable style groups - while allowing for seamless integration with vanilla CSS. ProtoCSS is designed for speed and efficiency, making it a great choice for developers who want to streamline their workflows.
+ProtoCSS is a robust and easy-to-use superset of CSS that provides a streamlined solution for writing style sheets. It offers enhanced functionality over traditional CSS, including the management of variables, shorthand properties, reusable style groups, and the ability to define and use lists of grouped data. Furthermore, ProtoCSS supports for loop constructs for iterative generation of CSS rules, significantly improving flexibility in creating theme variants, responsive designs, and consistent patterned rule sets. All these features are designed with seamless integration with vanilla CSS in mind. With a focus on speed, efficiency, and ease of use, ProtoCSS is an excellent choice for developers looking to optimize their workflows and enhance their CSS capabilities.
 
 ## Features
 The ProtoCSS preprocessor offers a comprehensive set of user-friendly features designed to enhance the experience of working with CSS for developers of all skill levels. These features include:
 
 * **Streamlined Imports:** Easily import external CSS and ProtoCSS files using Python-style import statements, managing various file types and handling errors effectively.
 * **Efficient Variable Handling:** Simplify working with dynamic values using ProtoCSS variables, which are seamlessly converted and used within your code.
+* **List Support:** Define and manage lists in your ProtoCSS code, allowing for easy storage and retrieval of grouped data. This can be highly useful for color schemes, font stacks, and more.
+* **For Loop Support:** Iteratively generate CSS rules with varying properties using ProtoCSS for loop syntax. This can be especially useful for creating theme variants, responsive designs, or any other rule sets that follow a consistent pattern.
 * **Reusable Style Groups:** Create and utilize style groups to minimize repetition and improve maintainability within your CSS code.
 * **Shorthand Property Expansion:** Save time and effort by employing shorthand properties, which are automatically expanded to their full equivalents by the preprocessor.
 * **Media Query Simplification:** Leverage the `@mq` keyword for a more concise and readable method of defining media queries.
