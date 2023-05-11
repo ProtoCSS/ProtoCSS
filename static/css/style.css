@@ -20,6 +20,15 @@ color: #333;
 
 
 
+
+.example {
+    width: 25%;
+    width: 50%;
+    width: 75%;
+    width: 100%;
+    width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
+}
+
 #logo-25 {
    color: black;
    width: 25%;
@@ -62,7 +71,7 @@ color: #333;
 
 /* Layout */
 .container {
-    width: 80%;
+    width: 25%; /* Example for list access usage */
     margin: 0 auto;
     color: var(--blue); /* Example for variable usage */
 }

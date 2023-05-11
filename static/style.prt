@@ -11,18 +11,37 @@ import "footer"; /* Example for direct import without specified file-type */
 @c: #333;
 @!blue: #2196F3;
 
+/* List below */
+list@colors: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
+list@widths: [25%, 50%, 75%, 100%];
+
+.example {
+    @w: list@widths[0];
+    @w: list@widths[1];
+    @w: list@widths[2];
+    @w: list@widths[3];
+    @w: list@widths[4]; /* Example for error */
+}
+
+for width in widths {
+    #logo {
+        @c: black;
+        width: {width};
+        @p: 20px 0;
+        @d: flex;
+        @jc: space-between;
+        @ai: center;
+    }
+};
+
+/* For loop above */
+
 /* Layout */
 .container {
-    @w: 80%;
-    margin:: 0 auto;
+    @w: list@widths[0]; /* Example for list access usage */
+    margin: 0 auto;
     @c: %!blue; /* Example for variable usage */
 }
-
-.container {
-    @w: 100%;
-    @p: 10px;
-}
-
 
 group@blueishPack {
     @m: 0;

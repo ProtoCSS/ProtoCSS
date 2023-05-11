@@ -9,7 +9,15 @@ class ProtoCSS:
         self.shorthand_properties = protocss_dict.shorthand_properties
         self.lists = {}
 
+    def replace_list_item(self, match):
+        list_name, index = match.groups()
+        index = int(index)
+        if list_name in self.lists and index < len(self.lists[list_name]):
+            return self.lists[list_name][index]
+        return f"/* Error: Invalid list item 'list@{list_name}[{index}]' */"
+
     def convert(self, protocss: str, base_path: str = "static/") -> str:
+
         def process_import(match):
             imported_file = match.group(1)
 
@@ -114,32 +122,6 @@ class ProtoCSS:
         protocss = re.sub(r"list@(\w+):\s*\[([^\]]+)\];", replace_list, protocss)
         protocss = re.sub(list_pattern, "", protocss)
 
-
-        # def replace_for_loop(match):
-        #     iterator_name = match.group(1)
-        #     list_name = match.group(2)
-        #     selector = match.group(3).replace("{" + iterator_name + "}", "{}")
-        #     property = match.group(4)
-        #     property_value = match.group(5)
-        #     # property_block = f"{property}: {property_value};"
-        #
-        #     print(f"iterator_name: {iterator_name}")
-        #     print(f"list_name: {list_name}")
-        #     print(f"selector: {selector}")
-        #     print(f"property_block: {property} - {property_value}\n\n")
-        #     print(f"lists: {self.lists}\n\n")
-        #
-        #     for_loop_result = ""
-        #     if list_name in self.lists:
-        #         for value in self.lists[list_name]:
-        #             for_loop_result += selector.format(value) + "{\n"
-        #             for_loop_result += f"   {property}: {iterator_name if self.lists[list_name].index(value) == iterator_name else value};\n"
-        #             for_loop_result += "}\n\n"
-        #
-        #         return for_loop_result
-        #     else:
-        #         return f"/* List '{list_name}' not found. */"
-
         def replace_for_loop(match):
             iterator_name = match.group(1)
             list_name = match.group(2)
@@ -185,8 +167,7 @@ class ProtoCSS:
             else:
                 return f"/* List '{list_name}' not found. */"
 
-        # for_pattern = re.compile(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+(\w+):\s*{(\w+)};\s+}\s+};")
-
+        protocss = re.sub(r"list@(\w+)\[(\d+)\]", self.replace_list_item, protocss)
         for_pattern = re.compile(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+((.|\n)+?);\s+}\s+};", re.MULTILINE)
 
         protocss = re.sub(for_pattern, replace_for_loop, protocss)
