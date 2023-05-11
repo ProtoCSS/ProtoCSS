@@ -12,9 +12,9 @@ The ProtoCSS preprocessor offers a comprehensive set of user-friendly features d
 
 * **Streamlined Imports:** Easily import external CSS and ProtoCSS files using Python-style import statements, managing various file types and handling errors effectively.
 * **Efficient Variable Handling:** Simplify working with dynamic values using ProtoCSS variables, which are seamlessly converted and used within your code.
-* **List Support:** Define and manage lists in your ProtoCSS code, allowing for easy storage and retrieval of grouped data. This can be highly useful for color schemes, font stacks, and more.
+* **List Support:** Define and manage lists in your ProtoCSS code, allowing for easy storage and retrieval of mixin data. This can be highly useful for color schemes, font stacks, and more.
 * **For Loop Support:** Iteratively generate CSS rules with varying properties using ProtoCSS for loop syntax. This can be especially useful for creating theme variants, responsive designs, or any other rule sets that follow a consistent pattern.
-* **Reusable Style Groups:** Create and utilize style groups to minimize repetition and improve maintainability within your CSS code.
+* **Reusable Style Mixins:** Create and utilize style mixins to minimize repetition and improve maintainability within your CSS code.
 * **Shorthand Property Expansion:** Save time and effort by employing shorthand properties, which are automatically expanded to their full equivalents by the preprocessor.
 * **Property-Declaration Shorthands:** Take advantage of Property-Declaration shorthand properties in ProtoCSS, allowing you to write fast, concise and expressive code without sacrificing flexibility.
 * **Media Query Simplification:** Leverage the `@mq` keyword for a more concise and readable method of defining media queries.
@@ -79,14 +79,14 @@ for width in widths {
     @c: %!blue; /* Example for variable usage */
 }
 
-group@blueishPack {
+mixin@blueishPack {
     @w100;
     @c: white;
     @br: 10px;
 }
 
 .header {
-    group@blueishPack;
+    mixin@blueishPack;
     @bg: #f5f5f5;
     @tdn;
     @d: flex;
@@ -312,7 +312,7 @@ List of supported property-declaration shorthands will be added soon.
 
 
 ## Lists
-In ProtoCSS, lists are a way to group data that belongs together. They can be used to store a set of values, such as colors, font stacks, or breakpoints.
+In ProtoCSS, lists are a way to mixin data that belongs together. They can be used to store a set of values, such as colors, font stacks, or breakpoints.
 
 ### Defining a List
 To define a list in ProtoCSS, you can use the `list@` syntax, followed by the name of the list and its contents enclosed in square brackets. Here's an example:

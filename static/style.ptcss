@@ -36,7 +36,7 @@ for width in widths {
 };
 /* For loop above */
 
-/* Predefined shorthands */
+/* Propery-decleration shorthands */
 .main-container {
     @w100;
     @p20;
@@ -51,14 +51,15 @@ for width in widths {
     @c: %!blue; /* Example for variable usage */
 }
 
-group@blueishPack {
+mixin@blueishPack {
     @w100;
     @c: white;
     @br: 10px;
+    @w100;
 }
 
 .header {
-    group@blueishPack;
+    mixin@blueishPack;
     @bg: #f5f5f5;
     @tdn;
     @d: flex;
@@ -69,7 +70,7 @@ group@blueishPack {
 /* Navigation */
 .nav {
     @d: flex;
-    group@blueishPack;
+    mixin@blueishPack;
 }
 
 

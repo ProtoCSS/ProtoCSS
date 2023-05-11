@@ -66,25 +66,25 @@ class ProtoCSS:
         protocss = re.sub(r"%!(\w+)", replace_var, protocss)
 
         # extract group definitions and store them in a dictionary
-        group_pattern = re.compile(r"group@(\w+)\s*\{([^}]+)\}")
+        group_pattern = re.compile(r"mixin@(\w+)\s*\{([^}]+)\}")
         groups = {}
         for match in group_pattern.findall(protocss):
-            group_name = match[0]
-            group_styles = match[1]
-            groups[group_name] = group_styles.strip()
+            mixin_name = match[0]
+            mixin_styles = match[1]
+            groups[mixin_name] = mixin_styles.strip()
 
-        def replace_group(match):
-            group_name = match.group(1)
-            if group_name not in groups:
-                return f"/* Group '{group_name}' not found. */"
-            group_styles = groups[group_name]
+        def replace_mixin(match):
+            mixin_name = match.group(1)
+            if mixin_name not in groups:
+                return f"/* Group '{mixin_name}' not found. */"
+            mixin_styles = groups[mixin_name]
             # Expand shorthand properties within the group
             for shorthand, full_property in self.shorthand_properties.items():
                 pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
-                group_styles = pattern.sub(f"{full_property}: \\1;", group_styles)
-            return group_styles
+                mixin_styles = pattern.sub(f"{full_property}: \\1;", mixin_styles)
+            return mixin_styles
 
-        protocss = re.sub(r"group@(\w+);", replace_group, protocss)
+        protocss = re.sub(r"mixin@(\w+);", replace_mixin, protocss)
         protocss = re.sub(group_pattern, "", protocss)  # Remove group declarations
 
         # Process xshorthand properties
@@ -125,7 +125,6 @@ class ProtoCSS:
             else:
                 return ""
 
-        # protocss = 'list@colors: ["red", "green", "blue"]\n'
         protocss = re.sub(r"list@(\w+):\s*\[([^\]]+)\];", replace_list, protocss)
         protocss = re.sub(list_pattern, "", protocss)
 
@@ -135,41 +134,25 @@ class ProtoCSS:
             selector = match.group(3).replace("{" + iterator_name + "}", "{}")
             property_block = [prop for prop in str(match.group(4)).split(";")]
 
-            # print(f"iterator_name: {iterator_name}")
-            # print(f"list_name: {list_name}")
-            # print(f"selector: {selector}")
-            # print(f"property_block: {property_block}\n\n")
-            # print(f"lists: {self.lists}\n")
             prop_list = []
             for prop in property_block:
                 prop_list.append(prop)
-
-            # print(f"prop_list: {prop_list}\n")
 
             for_loop_result = ""
             if list_name in self.lists:
                 for value in self.lists[list_name]:
                     clean_value = re.sub(r'\W+', '', value)
                     for_loop_result += f"{selector}-{clean_value} {{\n"
-                    # print(f"values: {value}")
                     for prop in property_block:
                         prop = prop.strip()
-                        # print(f"prop: {prop}")
                         for shorthand, full_property in self.shorthand_properties.items():
                             if prop.startswith(shorthand):
                                 prop = prop.replace(shorthand, full_property)
-                                # print(f"prop: {prop}")
-
                         if prop:
                             prop_name, prop_value = [p.strip() for p in prop.split(":")]
-                            # print(f"prop_name: {prop_name}")
-                            # print(f"prop_value: {prop_value}\n")
                             prop_value = prop_value.replace(f"{{{iterator_name}}}", value)
-
-
                             for_loop_result += f"   {prop_name}: {prop_value};\n"
                     for_loop_result += "}\n\n"
-
                 return for_loop_result
             else:
                 return f"/* List '{list_name}' not found. */"
