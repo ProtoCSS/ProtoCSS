@@ -27,7 +27,7 @@ Here is an example of using ProtoCSS to convert a mixed ProtoCSS and vanilla CSS
 ``` css
 import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"; /* Example for web import */
 import "header.css"; /* Example for direct .css import */
-import "header.prt"; /* Example for direct .prt import */
+import "header.ptcss"; /* Example for direct .ptcss import */
 import "footer"; /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
@@ -87,8 +87,8 @@ This is equivalent to:
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"); /* Example for web import */
 @import url("static/css/header.css"); /* Example for direct .css import */
-@import url("static/css/header.css"); /* Example for direct .prt import */
-@import url("static/footer.prt"); /* Example for direct import without specified file-type */
+@import url("static/css/header.css"); /* Example for direct .ptcss import */
+@import url("static/footer.ptcss"); /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
 

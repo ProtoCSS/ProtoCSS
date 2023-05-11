@@ -5,8 +5,8 @@
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"); /* Example for web import */
 @import url("static/css/header.css"); /* Example for direct .css import */
-@import url("static/css/header.css"); /* Example for direct .prt import */
-@import url("static/footer.prt"); /* Example for direct import without specified file-type */
+/* Error: File 'header.ptcss' not found in static/. */ /* Example for direct .ptcss import */
+/* Error: File 'footer' not found in static/. */ /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
 
@@ -20,13 +20,13 @@ color: #333;
 
 
 
-
 .example {
     width: 25%;
     width: 50%;
     width: 75%;
     width: 100%;
     width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
+    width: 100%; /* Example for predefined shorthand */
 }
 
 #logo-25 {
@@ -67,23 +67,30 @@ color: #333;
 
 
 
+.main-container {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
 /* For loop above */
 
 /* Layout */
 .container {
     width: 25%; /* Example for list access usage */
-    margin: 0 auto;
+    text-decoration: none;
     color: var(--blue); /* Example for variable usage */
 }
 
 
 
 .header {
-    margin: 0;
+    width: 100%;
     color: white;
     border-radius: 10px;
     background-color: #f5f5f5;
-    padding: 20px 0;
+    text-decoration: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,7 +99,7 @@ color: #333;
 /* Navigation */
 .nav {
     display: flex;
-    margin: 0;
+    width: 100%;
     color: white;
     border-radius: 10px;
 }
@@ -107,6 +114,7 @@ color: #333;
 
 .nav-item:hover {
     color: #333;
+    text-decoration: none;
 }
 
 /* Main content */

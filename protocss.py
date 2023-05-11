@@ -7,6 +7,7 @@ class ProtoCSS:
 
     def __init__(self):
         self.shorthand_properties = protocss_dict.shorthand_properties
+        self.pd_shorthand_properties = protocss_dict.pd_shorthand_properties
         self.lists = {}
 
     def replace_list_item(self, match):
@@ -29,17 +30,17 @@ class ProtoCSS:
                     return f'@import url("{imported_file_path}");'
                 else:
                     return f"/* Error: File '{imported_file}' not found in static/css. */"
-            elif imported_file.endswith(".prt"):
+            elif imported_file.endswith(".ptcss"):
                 imported_file_path = os.path.join(f"{base_path}/", imported_file)
                 if os.path.isfile(imported_file_path):
                     # imported_file_content = read_protocss_file(imported_file_path)
                     # return imported_file_content
-                    imported_file = imported_file.replace(".prt", ".css")
+                    imported_file = imported_file.replace(".ptcss", ".css")
                     return f'@import url("static/css/{imported_file}");'
                 else:
                     return f"/* Error: File '{imported_file}' not found in static/. */"
             elif imported_file.endswith(""):
-                imported_file_path = os.path.join(f"{base_path}", f"{imported_file}.prt")
+                imported_file_path = os.path.join(f"{base_path}", f"{imported_file}.ptcss")
                 if os.path.isfile(imported_file_path):
                     return f'@import url("{imported_file_path}");'
                 else:
@@ -86,6 +87,12 @@ class ProtoCSS:
         protocss = re.sub(r"group@(\w+);", replace_group, protocss)
         protocss = re.sub(group_pattern, "", protocss)  # Remove group declarations
 
+        # Process xshorthand properties
+        for xshorthand, full_property in self.pd_shorthand_properties.items():
+            pattern = re.compile(rf"{xshorthand};")  # Modify regex to match the xshorthand
+            protocss = pattern.sub(f"{full_property};", protocss)
+
+        # Process regular shorthand properties
         for shorthand, full_property in self.shorthand_properties.items():
             pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
             protocss = pattern.sub(f"{full_property}: \\1;", protocss)
@@ -193,7 +200,7 @@ def write_css_file(filename: str, css: str) -> None:
 
 
 if __name__ == '__main__':
-    input_filename = "static/style.prt"
+    input_filename = "static/style.ptcss"
     fn = os.path.splitext(os.path.basename(input_filename))[0]
     output_filename = f"static/css/{fn}.css"
 
