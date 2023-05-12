@@ -1,7 +1,5 @@
 import os
 import re
-import time
-from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from helper import protocss_dict
 from colorama import Fore, Back, Style, init
@@ -9,7 +7,7 @@ from datetime import datetime
 
 from helper.errors import ProtoCSSError
 
-
+__version__ = "0.0.2"
 class ProtoCSS:
 
     def __init__(self):
@@ -187,6 +185,7 @@ class ProtoCSS:
 
     class FileChangeHandler(FileSystemEventHandler):
         def __init__(self, converter):
+            print(f"{Fore.LIGHTWHITE_EX}ProtoCSS v{__version__}{Style.RESET_ALL} - For more information {Fore.CYAN}https://protocss.dev{Style.RESET_ALL}\n")
             print(f"{Fore.CYAN} * Watching for changes...\n{Style.RESET_ALL}")
             self.converter = converter
             self.now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
