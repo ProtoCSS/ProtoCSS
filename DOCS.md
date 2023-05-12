@@ -12,14 +12,17 @@ The ProtoCSS preprocessor offers a comprehensive set of user-friendly features d
 
 * **Streamlined Imports:** Easily import external CSS and ProtoCSS files using Python-style import statements, managing various file types and handling errors effectively.
 * **Efficient Variable Handling:** Simplify working with dynamic values using ProtoCSS variables, which are seamlessly converted and used within your code.
-* **List Support:** Define and manage lists in your ProtoCSS code, allowing for easy storage and retrieval of mixin data. This can be highly useful for color schemes, font stacks, and more.
+* **List Support:** Define and manage lists in your ProtoCSS code, allowing for easy storage and retrieval of grouped data. This can be highly useful for color schemes, font stacks, and more.
 * **For Loop Support:** Iteratively generate CSS rules with varying properties using ProtoCSS for loop syntax. This can be especially useful for creating theme variants, responsive designs, or any other rule sets that follow a consistent pattern.
 * **Reusable Style Mixins:** Create and utilize style mixins to minimize repetition and improve maintainability within your CSS code.
 * **Shorthand Property Expansion:** Save time and effort by employing shorthand properties, which are automatically expanded to their full equivalents by the preprocessor.
 * **Property-Declaration Shorthands:** Take advantage of Property-Declaration shorthand properties in ProtoCSS, allowing you to write fast, concise and expressive code without sacrificing flexibility.
 * **Media Query Simplification:** Leverage the `@mq` keyword for a more concise and readable method of defining media queries.
+* **File Change Watcher:** The updated ProtoCSS includes a file watcher that automatically detects and processes changes in your ProtoCSS files. This feature ensures your CSS stays up-to-date without manual intervention.
+* **Error Management:** The ProtoCSS preprocessor includes robust error management, catching and providing detailed information on any errors that occur during the preprocessing step. This functionality allows for quick debugging and problem resolution.
 * **Flexible Integration:** Effortlessly blend the advanced features of ProtoCSS with standard CSS code, providing a seamless integration experience.
 * **Enhanced Efficiency:** Benefit from the high speed and efficiency of the ProtoCSS preprocessor, optimizing your workflow for maximum productivity.
+
 
 These accessible and powerful features make the ProtoCSS preprocessor an exceptional choice for developers seeking to streamline their CSS development process.
 
