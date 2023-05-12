@@ -7,4 +7,4 @@ class ProtoCSSError(Exception):
         super().__init__(self.message)
 
     def __str__(self):
-        return f" {Fore.LIGHTYELLOW_EX}Error at line {self.line_number}: {self.message}" if self.line_number else f"{self.message}{Style.RESET_ALL}"
+        return f" {Fore.LIGHTYELLOW_EX}{self.message}{Style.RESET_ALL}"

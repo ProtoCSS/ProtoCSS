@@ -1,5 +1,4 @@
 import os
-
 from protocss import ProtoCSS
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler

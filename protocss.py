@@ -4,10 +4,15 @@ from watchdog.events import FileSystemEventHandler
 from helper import protocss_dict
 from colorama import Fore, Back, Style, init
 from datetime import datetime
-
 from helper.errors import ProtoCSSError
 
-__version__ = "0.0.2"
+
+with open("helper/.env", "r") as file:
+    contents = file.read()
+    version_match = re.search(r"VERSION=(\d+)\.(\d+)\.(\d+)-(.+)", contents)
+    __version__ = version_match.group(0).split("=")[1]
+
+
 class ProtoCSS:
 
     def __init__(self):
@@ -26,6 +31,7 @@ class ProtoCSS:
         try:
             lines = protocss.split("\n")
             for line_number, line in enumerate(lines, start=1):
+                # print(f"{Fore.LIGHTBLACK_EX}{line_number:3} | {Fore.RESET}{line}")
                 try:
                     def process_import(match):
                         imported_file = match.group(1)
@@ -176,7 +182,6 @@ class ProtoCSS:
 
                     return protocss
                 except Exception as e:
-                    # print("\n")
                     raise ProtoCSSError(f"An error occurred during conversion: {e}", line_number)
 
         except ProtoCSSError as e:
