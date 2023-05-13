@@ -6,10 +6,18 @@ from colorama import Fore, Back, Style, init
 from datetime import datetime
 from helper.errors import ProtoCSSError
 
-with open("helper/.env", "r") as file:
-    contents = file.read()
-    version_match = re.search(r"VERSION=(\d+)\.(\d+)\.(\d+)-(.+)", contents)
-    __version__ = version_match.group(0).split("=")[1]
+def read_version():
+    try:
+        with open("helper/.env", "r") as file:
+            contents = file.read()
+            version_match = re.search(r"VERSION=(\d+)\.(\d+)\.(\d+)-(.+)", contents)
+            __version__ = version_match.group(0).split("=")[1]
+            return __version__
+    except Exception as e:
+        print(f"Failed to read version from .env file due to error: {e}")
+        return "unknown"
+
+__version__ = read_version()
 
 
 class ProtoCSS:
@@ -181,6 +189,27 @@ class ProtoCSS:
 
                     protocss = re.sub(for_pattern, replace_for_loop, protocss)
 
+                    def replace_condition(match):
+                        try:
+                            condition, true_body, false_body = match.groups()
+                        except ValueError as e:
+                            raise ProtoCSSError(f"Failed to extract condition and body contents: {e}")
+
+                        try:
+                            true_body = true_body.strip()
+                            false_body = false_body.strip()
+                        except AttributeError as e:
+                            raise ProtoCSSError(f"Failed to strip body contents: {e}")
+
+                        # Check if condition contains valid characters only
+                        if re.search(r"[^a-zA-Z0-9\s><=!-:pxemremvhvw]", condition):
+                            raise ProtoCSSError(f"Condition contains invalid characters: {condition}")
+
+                        return f"@media ({condition}) {{\n{true_body}\n}}\n@media not all and ({condition}) {{\n{false_body}\n}}"
+
+                    protocss = re.sub(r"if\s*\((.+?)\)\s*{\s*(.+?)\s*}\s*else\s*{\s*(.+?)\s*};", replace_condition, protocss, flags=re.DOTALL)
+
+
                     return protocss
                 except Exception as e:
                     raise ProtoCSSError(f"An error occurred during conversion: {e}", line_number)
@@ -193,7 +222,7 @@ class ProtoCSS:
         def __init__(self, converter):
             print(
                 f"{Fore.LIGHTWHITE_EX}ProtoCSS v{__version__}{Style.RESET_ALL} - For more information {Fore.CYAN}https://protocss.dev{Style.RESET_ALL}\n")
-            print(f"{Fore.CYAN} * Watching for changes...\n{Style.RESET_ALL}")
+            print(f"{Fore.LIGHTCYAN_EX} * Watching for changes...\n{Style.RESET_ALL}")
             self.converter = converter
             self.now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 

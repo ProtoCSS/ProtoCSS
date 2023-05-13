@@ -30,9 +30,6 @@ for width in widths {
         @c: black;
         width: {width};
         @p: 20px 0;
-        @d: flex;
-        @jc: space-between;
-        @ai: center;
     }
 };
 /* For loop above */
@@ -198,4 +195,30 @@ input[type="submit"] {
         @w30;
     }
 }
+
+if (min-width: 30em) and (orientation: landscape) {
+    body {
+        color: blue;
+        @w100;
+        @c: %!blue;
+        @p: 20px;
+        @ta: center;
+    }
+
+    .container {
+        @w: 100%;
+        @p10;
+        @d: flex;
+        @jcsa;
+        @m25;
+        @c: list@colors[0];
+    }
+
+} else {
+    body {
+        color: red;
+        @jcsb;
+        @w70;
+    }
+};
 
