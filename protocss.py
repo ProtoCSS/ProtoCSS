@@ -6,7 +6,6 @@ from colorama import Fore, Back, Style, init
 from datetime import datetime
 from helper.errors import ProtoCSSError
 
-
 with open("helper/.env", "r") as file:
     contents = file.read()
     version_match = re.search(r"VERSION=(\d+)\.(\d+)\.(\d+)-(.+)", contents)
@@ -75,6 +74,8 @@ class ProtoCSS:
                     # Replace variable usage
                     def replace_var(match):
                         var_name = match.group(1)
+                        if var_name not in variables:
+                            raise ProtoCSSError(f"Variable '{var_name}' not found.")
                         return f"var(--{var_name})"
 
                     protocss = re.sub(r"%!(\w+)", replace_var, protocss)
@@ -103,13 +104,13 @@ class ProtoCSS:
 
                     # Process xshorthand properties
                     for xshorthand, full_property in self.pd_shorthand_properties.items():
-                        pattern = re.compile(rf"{xshorthand};")  # Modify regex to match the xshorthand
-                        protocss = pattern.sub(f"{full_property};", protocss)
+                        xshorthand_pattern = re.compile(rf"({xshorthand});")
+                        protocss = xshorthand_pattern.sub(f"{full_property};", protocss)
 
                     # Process regular shorthand properties
                     for shorthand, full_property in self.shorthand_properties.items():
-                        pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
-                        protocss = pattern.sub(f"{full_property}: \\1;", protocss)
+                        shorthand_pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
+                        protocss = shorthand_pattern.sub(f"{full_property}: \\1;", protocss)
 
                     def expand_media_query(match):
                         try:
@@ -190,7 +191,8 @@ class ProtoCSS:
 
     class FileChangeHandler(FileSystemEventHandler):
         def __init__(self, converter):
-            print(f"{Fore.LIGHTWHITE_EX}ProtoCSS v{__version__}{Style.RESET_ALL} - For more information {Fore.CYAN}https://protocss.dev{Style.RESET_ALL}\n")
+            print(
+                f"{Fore.LIGHTWHITE_EX}ProtoCSS v{__version__}{Style.RESET_ALL} - For more information {Fore.CYAN}https://protocss.dev{Style.RESET_ALL}\n")
             print(f"{Fore.CYAN} * Watching for changes...\n{Style.RESET_ALL}")
             self.converter = converter
             self.now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
