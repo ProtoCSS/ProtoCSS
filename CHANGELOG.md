@@ -2,6 +2,15 @@
 
 All notable changes to the ProtoCSS project will be documented in this file. This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.3]-dev - 2023-05-13
+
+### Added
+
+* File change watcher feature that automatically detects and processes changes in ProtoCSS files, ensuring the CSS stays up-to-date without manual intervention.
+* Robust error handling for catching and providing detailed information on any errors that occur during the preprocessing step, facilitating quick debugging and problem resolution.
+* **New feature:** native support for "if-else", JS-like conditional statements, enabling dynamic styling based on defined conditions for more flexible and responsive design solutions.
+* Robust semantic versioning for the ProtoCSS project, ensuring consistency and clarity in versioning.
+
 ## [0.0.2]-dev - 2023-05-10
 
 ### Added
