@@ -6,6 +6,7 @@ from colorama import Fore, Back, Style, init
 from datetime import datetime
 from helper.errors import ProtoCSSError
 
+
 def read_version():
     try:
         with open("helper/.env", "r") as file:
@@ -17,6 +18,7 @@ def read_version():
         print(f"Failed to read version from .env file due to error: {e}")
         return "unknown"
 
+
 __version__ = read_version()
 
 
@@ -26,6 +28,9 @@ class ProtoCSS:
         self.shorthand_properties = protocss_dict.shorthand_properties
         self.pd_shorthand_properties = protocss_dict.pd_shorthand_properties
         self.lists = {}
+        self.imported_variables = {}
+        self.imported_lists = {}
+        self.imported_mixins = {}
 
     def replace_list_item(self, match):
         list_name, index = match.groups()
@@ -38,11 +43,15 @@ class ProtoCSS:
         try:
             lines = protocss.split("\n")
             for line_number, line in enumerate(lines, start=1):
+
                 # print(f"{Fore.LIGHTBLACK_EX}{line_number:3} | {Fore.RESET}{line}")
                 try:
                     def process_import(match):
-                        imported_file = match.group(1)
+                        def read_protocss_file(path):
+                            with open(path, "r") as file:
+                                return file.read()
 
+                        imported_file = match.group(1)
                         if imported_file.startswith("http://") or imported_file.startswith("https://"):
                             return f'@import url("{imported_file}");'
                         elif imported_file.endswith(".css"):
@@ -54,9 +63,42 @@ class ProtoCSS:
                         elif imported_file.endswith(".ptcss"):
                             imported_file_path = os.path.join(f"{base_path}/", imported_file)
                             if os.path.isfile(imported_file_path):
-                                # imported_file_content = read_protocss_file(imported_file_path)
-                                # return imported_file_content
-                                imported_file = imported_file.replace(".ptcss", ".css")
+                                imported_file_content = read_protocss_file(imported_file_path)
+                                lines = imported_file_content.split("\n")
+                                # print(f"{Fore.LIGHTBLACK_EX}Imported file: {imported_file}{Fore.RESET}")
+                                new_line_number = 1
+                                for line in lines:
+                                    line = line.strip()
+                                    try:
+                                        # print(f"Line: {line}")
+                                        if line.startswith("@!"):
+                                            line.split(":")
+                                            var_name = line.split(":")[0].replace("@!", "").strip()
+                                            var_value = line.split(":")[1].replace(";", "").strip()
+                                            # print(f"{Fore.LIGHTBLACK_EX}Variable: {line}{Fore.RESET}")
+                                            self.imported_variables[f'{var_name}'] = var_value
+                                            # print(f"{Fore.LIGHTGREEN_EX}Variable: {self.imported_variables}{Fore.RESET}")
+                                        elif line.startswith("list@"):
+                                            list_name = line.split("@")[1].split("[")[0].strip()
+                                            list_items = line.split("[")[1].replace("]", "").strip().split(",")
+                                            # print(f"{Fore.LIGHTBLACK_EX}List: {line}{Fore.RESET}")
+                                            self.imported_lists[f'{list_name}'] = list_items
+                                            # print(f"{Fore.LIGHTMAGENTA_EX}List: {self.imported_lists}{Fore.RESET}")
+                                        elif line.startswith("mixin@") and line.endswith("{"):
+                                            mixin_name = line.split("@")[1].split("{")[0].strip()
+                                            mixin_content = ""
+                                            while True:
+                                                new_line_number += 1
+                                                mixin_line = lines[new_line_number - 1].strip()
+                                                if mixin_line == "}":
+                                                    break
+                                                else:
+                                                    mixin_content += f"{mixin_line}"
+                                            self.imported_mixins[f'{mixin_name}'] = mixin_content
+                                            # print(f"{Fore.MAGENTA}Mixin: {self.imported_mixins}{Fore.RESET}")
+                                    except Exception as e:
+                                        print(f"{Fore.RED}Error: {e}{Fore.RESET}")
+                                    new_line_number += 1
                                 return f'@import url("static/css/{imported_file}");'
                             else:
                                 raise ProtoCSSError(f"File '{imported_file}' not found in static/.")
@@ -82,9 +124,14 @@ class ProtoCSS:
                     # Replace variable usage
                     def replace_var(match):
                         var_name = match.group(1)
-                        if var_name not in variables:
+                        if var_name in variables:
+                            return variables[var_name]
+                        elif var_name in self.imported_variables:
+                            return self.imported_variables[var_name]
+                        else:
                             raise ProtoCSSError(f"Variable '{var_name}' not found.")
-                        return f"var(--{var_name})"
+
+                        # return f"var(--{var_name})"
 
                     protocss = re.sub(r"%!(\w+)", replace_var, protocss)
 
@@ -146,10 +193,12 @@ class ProtoCSS:
                         # Change this line to use the list name as the key in a dictionary
                         self.lists[list_name] = list_values
 
-                        if list_name not in self.lists:
-                            raise ProtoCSSError(f"List '{list_name}' not found.")
-                        else:
+                        if list_name in self.lists:
                             return ""
+                        elif list_name in self.imported_lists:
+                            return ""
+                        else:
+                            raise ProtoCSSError(f"List '{list_name}' not found.")
 
                     protocss = re.sub(r"list@(\w+):\s*\[([^\]]+)\];", replace_list, protocss)
                     protocss = re.sub(list_pattern, "", protocss)
@@ -207,8 +256,8 @@ class ProtoCSS:
 
                         return f"@media ({condition}) {{\n{true_body}\n}}\n@media not all and ({condition}) {{\n{false_body}\n}}"
 
-                    protocss = re.sub(r"if\s*\((.+?)\)\s*{\s*(.+?)\s*}\s*else\s*{\s*(.+?)\s*};", replace_condition, protocss, flags=re.DOTALL)
-
+                    protocss = re.sub(r"if\s*\((.+?)\)\s*{\s*(.+?)\s*}\s*else\s*{\s*(.+?)\s*};", replace_condition,
+                                      protocss, flags=re.DOTALL)
 
                     return protocss
                 except Exception as e:

@@ -5,7 +5,7 @@
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"); /* Example for web import */
 @import url("static/css/header.css"); /* Example for direct .css import */
-@import url("static/css/header.css"); /* Example for direct .ptcss import */
+@import url("static/css/header.ptcss"); /* Example for direct .ptcss import */
 @import url("static/footer.ptcss"); /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
 
@@ -28,6 +28,10 @@ color: #333;
     width: 100%;
     width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
     width: 100%; /* Example for predefined shorthand */
+}
+
+.import_example {
+    color: #2a9d8f;
 }
 
 #logo-25 {
@@ -69,7 +73,7 @@ color: #333;
 .container {
     width: 25%; /* Example for list access usage */
     text-decoration: none;
-    color: var(--blue); /* Example for variable usage */
+    color: #2196F3; /* Example for variable usage */
 }
 
 
@@ -83,7 +87,8 @@ color: #333;
     text-decoration: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    @: "gray"; /* Example for variable usage import (defined in header.ptcss) */
+    color: "yellow"; /* Example for list-usage import (defined in header.ptcss) */
 }
 
 /* Navigation */
@@ -98,7 +103,7 @@ color: #333;
 .nav-item {
     margin: 0 10px;
     font-size: 14px;
-    color: var(--blue);
+    color: #2196F3;
 }
 
 .nav-item:hover {
@@ -123,7 +128,7 @@ color: #333;
 
 .sidebar-item {
     margin: 0 0 10px 0;
-    color: var(--red);
+    color: #f44336;
     font-size: 14px;
 }
 
@@ -224,7 +229,7 @@ input[type="submit"] {
 body {
         color: blue;
         width: 100%;
-        color: var(--blue);
+        color: #2196F3;
         padding: 20px;
         text-align: center;
     }

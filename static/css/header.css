@@ -1,0 +1,55 @@
+:root {
+--headerColor: #2a9d8f;
+--blackGray: /* Error: Invalid list item 'list@colors[8]' */;
+}
+
+/* header.prot */
+
+
+
+header {
+  background-color: #2a9d8f;
+  padding: 20px 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* List below */
+
+
+
+
+
+/* Example for list access usage */
+.example {
+    width: 25%;
+    width: 50%;
+    width: 75%;
+    width: 100%;
+    width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
+    width: 100%; /* Example for predefined shorthand */
+}
+
+
+
+.header {
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #f5f5f5;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

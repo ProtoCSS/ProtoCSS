@@ -25,6 +25,10 @@ list@widths: [25%, 50%, 75%, 100%];
     @w100; /* Example for predefined shorthand */
 }
 
+.import_example {
+    @c: %!headerColor;
+}
+
 for width in widths {
     #logo {
         @c: black;
@@ -62,7 +66,8 @@ mixin@blueishPack {
     @tdn;
     @d: flex;
     @jc: space-between;
-    @ai: center;
+    @: %!blackGray; /* Example for variable usage import (defined in header.ptcss) */
+    @c: list@fromHeader[3]; /* Example for list-usage import (defined in header.ptcss) */
 }
 
 /* Navigation */

@@ -1,9 +1,9 @@
 /* header.prot */
 
-@!header-color: #2a9d8f;
+@!headerColor: #2a9d8f;
 
 header {
-  background-color: %!header-color;
+  background-color: %!headerColor;
   @p: 20px 0;
 }
 
@@ -15,4 +15,38 @@ nav a {
 
 nav a:hover {
   text-decoration: underline;
+}
+
+
+
+/* List below */
+list@fromHeader: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
+list@widths: [25%, 50%, 75%, 100%];
+
+@!blackGray: list@colors[8];
+
+/* Example for list access usage */
+.example {
+    @w: list@widths[0];
+    @w: list@widths[1];
+    @w: list@widths[2];
+    @w: list@widths[3];
+    @w: list@widths[4]; /* Example for error */
+    @w100; /* Example for predefined shorthand */
+}
+
+mixin@blueishPack {
+    @w100;
+    @c: white;
+    @br: 10px;
+    @w100;
+}
+
+.header {
+    mixin@blueishPack;
+    @bg: #f5f5f5;
+    @tdn;
+    @d: flex;
+    @jc: space-between;
+    @ai: center;
 }
