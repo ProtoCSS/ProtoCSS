@@ -1,4 +1,10 @@
-/* header.prot */
+mixin@maxin {
+    @bg: #f5f5f5;
+    @tdn;
+    @d: flex;
+    @jc: space-between;
+    @ai: center;
+}
 
 @!headerColor: #2a9d8f;
 
@@ -23,7 +29,15 @@ nav a:hover {
 list@fromHeader: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
 list@widths: [25%, 50%, 75%, 100%];
 
-@!blackGray: list@colors[8];
+@!blackGray: list@fromHeader[8];
+
+for color in fromHeader {
+    .color {
+        @c: {color};
+        @w50;
+    }
+};
+
 
 /* Example for list access usage */
 .example {
@@ -35,15 +49,10 @@ list@widths: [25%, 50%, 75%, 100%];
     @w100; /* Example for predefined shorthand */
 }
 
-mixin@blueishPack {
-    @w100;
-    @c: white;
-    @br: 10px;
-    @w100;
-}
+
 
 .header {
-    mixin@blueishPack;
+    mixin@maxin;
     @bg: #f5f5f5;
     @tdn;
     @d: flex;

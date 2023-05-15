@@ -57,8 +57,14 @@ mixin@blueishPack {
     @w100;
     @c: white;
     @br: 10px;
-    @w100;
+    @pb35;
 }
+
+.maxin-test {
+    @mixin@maxin;
+    @db;
+}
+
 
 .header {
     mixin@blueishPack;
@@ -66,8 +72,9 @@ mixin@blueishPack {
     @tdn;
     @d: flex;
     @jc: space-between;
-    @: %!blackGray; /* Example for variable usage import (defined in header.ptcss) */
+    @c: %!blackGray; /* Example for variable usage import (defined in header.ptcss) */
     @c: list@fromHeader[3]; /* Example for list-usage import (defined in header.ptcss) */
+    @c: %!headerColor;
 }
 
 /* Navigation */

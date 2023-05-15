@@ -1,6 +1,6 @@
 :root {
 --headerColor: #2a9d8f;
---blackGray: /* Error: Invalid list item 'list@colors[8]' */;
+--blackGray: "gray";
 }
 
 /* header.prot */
@@ -30,6 +30,59 @@ nav a:hover {
 
 
 
+.color-red {
+   color: "red";
+   width: 50%;
+}
+
+.color-green {
+   color: "green";
+   width: 50%;
+}
+
+.color-blue {
+   color: "blue";
+   width: 50%;
+}
+
+.color-yellow {
+   color: "yellow";
+   width: 50%;
+}
+
+.color-orange {
+   color: "orange";
+   width: 50%;
+}
+
+.color-purple {
+   color: "purple";
+   width: 50%;
+}
+
+.color-pink {
+   color: "pink";
+   width: 50%;
+}
+
+.color-brown {
+   color: "brown";
+   width: 50%;
+}
+
+.color-gray {
+   color: "gray";
+   width: 50%;
+}
+
+.color-black {
+   color: "black";
+   width: 50%;
+}
+
+
+
+
 /* Example for list access usage */
 .example {
     width: 25%;
@@ -43,10 +96,11 @@ nav a:hover {
 
 
 .header {
-    width: 100%;
-    color: white;
-    border-radius: 10px;
-    width: 100%;
+    background-color: #f5f5f5;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #f5f5f5;
     text-decoration: none;
     display: flex;

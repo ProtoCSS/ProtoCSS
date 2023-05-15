@@ -1,0 +1,67 @@
+:root {
+--PrimaryColor: #3498db;
+--PrimaryHoverColor: #2980b9;
+--SecondaryColor: #2ecc71;
+--SecondaryHoverColor: #27ae60;
+--FontSize: 16px;
+--FontFamily: 'Roboto', sans-serif;
+--FontWeight: 400;
+--ContainerWidth: 1200px;
+--Padding: 20px;
+--BorderRadius: 4px;
+--BorderColor: #ccc;
+--ButtonColor: #3498db;
+--ButtonHoverColor: #2980b9;
+--ButtonTextColor: #fff;
+--ButtonBorderRadius: 4px;
+--InputBackgroundColor: #f2f2f2;
+--InputBorderColor: #ccc;
+--InputFocusBorderColor: #3498db;
+--AlertBackgroundColor: #f8d7da;
+--AlertTextColor: #721c24;
+--AlertBorderColor: #f5c6cb;
+}
+
+/* Primary Colors: */
+
+
+
+
+/* Secondary Colors: */
+
+
+
+
+/* Fonts: */
+
+
+
+
+
+/* Layout: */
+
+
+
+
+/* Borders: */
+
+
+
+
+/* Buttons: */
+
+
+
+
+
+
+/* Form Inputs: */
+
+
+
+
+
+/* Alerts: */
+
+
+

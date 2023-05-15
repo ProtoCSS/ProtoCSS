@@ -93,8 +93,8 @@ class ProtoCSS:
                                                 if mixin_line == "}":
                                                     break
                                                 else:
-                                                    mixin_content += f"{mixin_line}"
-                                            self.imported_mixins[f'{mixin_name}'] = mixin_content
+                                                    mixin_content += mixin_line + "\n\t"
+                                            self.imported_mixins[f'{mixin_name}'] = mixin_content.replace("@", "", 1)[: -2]
                                             # print(f"{Fore.MAGENTA}Mixin: {self.imported_mixins}{Fore.RESET}")
                                     except Exception as e:
                                         print(f"{Fore.RED}Error: {e}{Fore.RESET}")
@@ -145,14 +145,26 @@ class ProtoCSS:
 
                     def replace_mixin(match):
                         mixin_name = match.group(1)
-                        if mixin_name not in groups:
+                        # if mixin_name not in groups:
+                        #     raise ProtoCSSError(f"Mixin '{mixin_name}' not found.")
+                        # mixin_styles = groups[mixin_name]
+                        if mixin_name in groups:
+                            mixin_styles = groups[mixin_name]
+                            # Expand shorthand properties within the group
+                            for shorthand, full_property in self.shorthand_properties.items():
+                                pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
+                                mixin_styles = pattern.sub(f"{full_property}: \\1;", mixin_styles)
+                            return mixin_styles
+                        elif mixin_name in self.imported_mixins:
+                            mixin_styles = f"{self.imported_mixins[mixin_name]}\n"
+
+                            # Expand shorthand properties within the group
+                            for shorthand, full_property in self.shorthand_properties.items():
+                                pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
+                                mixin_styles = pattern.sub(f"{full_property}: \\1;", mixin_styles)
+                            return mixin_styles
+                        else:
                             raise ProtoCSSError(f"Mixin '{mixin_name}' not found.")
-                        mixin_styles = groups[mixin_name]
-                        # Expand shorthand properties within the group
-                        for shorthand, full_property in self.shorthand_properties.items():
-                            pattern = re.compile(rf"{shorthand}\s*:\s*(.+?);")
-                            mixin_styles = pattern.sub(f"{full_property}: \\1;", mixin_styles)
-                        return mixin_styles
 
                     protocss = re.sub(r"mixin@(\w+);", replace_mixin, protocss)
                     protocss = re.sub(group_pattern, "", protocss)  # Remove group declarations

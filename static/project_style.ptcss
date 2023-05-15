@@ -1,0 +1,44 @@
+/* Primary Colors: */
+
+@!PrimaryColor: #3498db;
+@!PrimaryHoverColor: #2980b9;
+
+/* Secondary Colors: */
+
+@!SecondaryColor: #2ecc71;
+@!SecondaryHoverColor: #27ae60;
+
+/* Fonts: */
+
+@!FontSize: 16px;
+@!FontFamily: 'Roboto', sans-serif;
+@!FontWeight: 400;
+
+/* Layout: */
+
+@!ContainerWidth: 1200px;
+@!Padding: 20px;
+
+/* Borders: */
+
+@!BorderRadius: 4px;
+@!BorderColor: #ccc;
+
+/* Buttons: */
+
+@!ButtonColor: #3498db;
+@!ButtonHoverColor: #2980b9;
+@!ButtonTextColor: #fff;
+@!ButtonBorderRadius: 4px;
+
+/* Form Inputs: */
+
+@!InputBackgroundColor: #f2f2f2;
+@!InputBorderColor: #ccc;
+@!InputFocusBorderColor: #3498db;
+
+/* Alerts: */
+
+@!AlertBackgroundColor: #f8d7da;
+@!AlertTextColor: #721c24;
+@!AlertBorderColor: #f5c6cb;
