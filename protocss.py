@@ -94,7 +94,8 @@ class ProtoCSS:
                                                     break
                                                 else:
                                                     mixin_content += mixin_line + "\n\t"
-                                            self.imported_mixins[f'{mixin_name}'] = mixin_content.replace("@", "", 1)[: -2]
+                                            self.imported_mixins[f'{mixin_name}'] = mixin_content.replace("@", "", 1)[
+                                                                                    : -2]
                                             # print(f"{Fore.MAGENTA}Mixin: {self.imported_mixins}{Fore.RESET}")
                                     except Exception as e:
                                         print(f"{Fore.RED}Error: {e}{Fore.RESET}")
@@ -216,38 +217,44 @@ class ProtoCSS:
                     protocss = re.sub(list_pattern, "", protocss)
 
                     def replace_for_loop(match):
-                        iterator_name = match.group(1)
-                        list_name = match.group(2)
-                        selector = match.group(3).replace("{" + iterator_name + "}", "{}")
-                        property_block = [prop for prop in str(match.group(4)).split(";")]
+                        try:
+                            iterator_name = match.group(1)
+                            list_name = match.group(2)
+                            selector = match.group(3).replace("{" + iterator_name + "}", "{}")
+                            property_block = [prop for prop in str(match.group(4)).split(";")]
 
-                        prop_list = []
-                        for prop in property_block:
-                            prop_list.append(prop)
+                            prop_list = []
+                            for prop in property_block:
+                                prop_list.append(prop)
 
-                        for_loop_result = ""
-                        if list_name in self.lists:
-                            for value in self.lists[list_name]:
-                                clean_value = re.sub(r'\W+', '', value)
-                                for_loop_result += f"{selector}-{clean_value} {{\n"
-                                for prop in property_block:
-                                    prop = prop.strip()
-                                    for shorthand, full_property in self.shorthand_properties.items():
-                                        if prop.startswith(shorthand):
-                                            prop = prop.replace(shorthand, full_property)
-                                    if prop:
-                                        prop_name, prop_value = [p.strip() for p in prop.split(":")]
-                                        prop_value = prop_value.replace(f"{{{iterator_name}}}", value)
-                                        for_loop_result += f"   {prop_name}: {prop_value};\n"
-                                for_loop_result += "}\n\n"
-                            return for_loop_result
-                        else:
-                            raise ProtoCSSError(f"In loop: List '{list_name}' not found.")
+                            for_loop_result = ""
+                            if list_name in self.lists:
+                                for value in self.lists[list_name]:
+                                    clean_value = re.sub(r'\W+', '', value)
+                                    for_loop_result += f"{selector}-{clean_value} {{\n"
+                                    for prop in property_block:
+                                        prop = prop.strip()
+                                        for shorthand, full_property in self.shorthand_properties.items():
+                                            if prop.startswith(shorthand):
+                                                prop = prop.replace(shorthand, full_property)
+                                        if prop:
+                                            prop_name, prop_value = [p.strip() for p in prop.split(":")]
+                                            prop_value = prop_value.replace(f"{{{iterator_name}}}", value)
+                                            for_loop_result += f"   {prop_name}: {prop_value};\n"
+                                    for_loop_result += "}\n\n"
+                                return for_loop_result
+                            else:
+                                raise ProtoCSSError(f"In loop: List '{list_name}' not found.")
+                        except Exception as e:
+                            if re.search(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+((.|\n)+?);\s+}\s+}", protocss):
+                                raise ProtoCSSError(f"Forgot to add semicolon after for loop?")
+                            else:
+                                raise ProtoCSSError(f"Failed to extract for loop contents: {e}")
+
 
                     protocss = re.sub(r"list@(\w+)\[(\d+)\]", self.replace_list_item, protocss)
                     for_pattern = re.compile(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+((.|\n)+?);\s+}\s+};",
                                              re.MULTILINE)
-
                     protocss = re.sub(for_pattern, replace_for_loop, protocss)
 
                     def replace_condition(match):

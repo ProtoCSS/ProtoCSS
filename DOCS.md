@@ -200,6 +200,26 @@ color: #333;
 ```
 This example showcases the ability of the ProtoCSS Preprocessor to handle imports, variables, shorthand properties, lists and a for loop.
 
+## Import Functionality
+The ProtoCSS preprocessor offers a powerful import feature. This functionality allows you to include various ProtoCSS files within other ProtoCSS files. By enabling the reuse of CSS rules across multiple files, this feature promotes modular design, cleaner code, and enhanced maintainability.
+
+### Syntax
+The syntax for the import feature is straightforward and intuitive. To import a file, simply use the following command:
+
+``` css
+import "filename";
+```
+Replace "filename" with the name of your ProtoCSS file or the URL of the file you wish to import. If the file is a standard CSS file, ensure to include the .css extension. In the absence of an explicit file extension, ProtoCSS will infer the file as a ProtoCSS file with a .ptcss extension.
+
+### Imported Elements
+The ProtoCSS Preprocessor allows the import of three main elements: 
+* Variables.
+* Lists.
+* Mixins.
+
+Each of these elements provides unique capabilities that can significantly improve your workflow. The following sections will provide a detailed overview of each of these elements.
+
+
 ## Supported Properties
 The ProtoCSS Preprocessor is designed to offer a comprehensive set of shorthand properties and CSS attributes, making it easier for developers to efficiently create and maintain styles. By providing a robust set of features, ProtoCSS allows you to focus on creating visually stunning and highly functional designs with greater ease and simplicity.
 
