@@ -27,7 +27,7 @@ These accessible and powerful features make the ProtoCSS preprocessor an excepti
 For more details on using ProtoCSS, check out the documentation. It covers various features and will help you get the most out of the preprocessor.
 
 ## Contributing
-I appreciate and value contributions to the ProtoCSS project. Whether you're a seasoned developer or a newcomer, your input can help me improve and grow the preprocessor. For more information on how to contribute, please consult our contributing guidelines.
+I appreciate and value contributions to the ProtoCSS project. Whether you're a seasoned developer or a newcomer, your input can help me improve and grow the preprocessor. For more information on how to contribute, please consult the contributing guidelines.
 
 ## License
 ProtoCSS is distributed under the terms of the MIT License. For more details, please refer to the LICENSE file included in the project repository.
