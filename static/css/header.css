@@ -3,7 +3,7 @@
 --blackGray: "gray";
 }
 
-/* header.prot */
+
 
 
 
@@ -91,6 +91,7 @@ nav a:hover {
     width: 100%;
     width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
     width: 100%; /* Example for predefined shorthand */
+    color: "gray";
 }
 
 

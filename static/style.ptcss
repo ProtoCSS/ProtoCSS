@@ -21,7 +21,6 @@ list@widths: [25%, 50%, 75%, 100%];
     @w: list@widths[1];
     @w: list@widths[2];
     @w: list@widths[3];
-    @w: list@widths[4]; /* Example for error */
     @w100; /* Example for predefined shorthand */
 }
 
@@ -37,6 +36,7 @@ for width in widths {
     }
 };
 /* For loop above */
+
 
 /* Propery-decleration shorthands */
 .main-container {
@@ -72,8 +72,8 @@ mixin@blueishPack {
     @tdn;
     @d: flex;
     @jc: space-between;
-    @c: %!blackGray; /* Example for variable usage import (defined in header.ptcss) */
-    @c: list@fromHeader[3]; /* Example for list-usage import (defined in header.ptcss) */
+    @c: %!blackGray;
+    @c: list@fromHeader[3];
     @c: %!headerColor;
 }
 
@@ -99,6 +99,7 @@ mixin@blueishPack {
     @d: flex;
     @p: 20px 0;
 }
+
 
 .sidebar {
     @w: 25%;
@@ -216,16 +217,13 @@ if (min-width: 30em) and (orientation: landscape) {
         @p: 20px;
         @ta: center;
     }
-
     .container {
         @w: 100%;
-        @p10;
         @d: flex;
         @jcsa;
         @m25;
         @c: list@colors[0];
     }
-
 } else {
     body {
         color: red;

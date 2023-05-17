@@ -35,9 +35,18 @@ class ProtoCSS:
     def replace_list_item(self, match):
         list_name, index = match.groups()
         index = int(index)
+
+        for imp_list_name, imp_list_items in self.imported_lists.items():
+            fixed_list_name = imp_list_name[:-1]
+            if list_name == fixed_list_name:
+                if index < len(imp_list_items):
+                    return imp_list_items[index]
+                else:
+                    raise ProtoCSSError(f"Invalid imported list item 'list@{list_name}[{index}]'")
         if list_name in self.lists and index < len(self.lists[list_name]):
             return self.lists[list_name][index]
-        return f"/* Error: Invalid list item 'list@{list_name}[{index}]' */"
+        else:
+            raise ProtoCSSError(f"Invalid list item 'list@{list_name}[{index}]'")
 
     def convert(self, protocss: str, base_path: str = "static/") -> str:
         try:
@@ -250,7 +259,6 @@ class ProtoCSS:
                                 raise ProtoCSSError(f"Forgot to add semicolon after for loop?")
                             else:
                                 raise ProtoCSSError(f"Failed to extract for loop contents: {e}")
-
 
                     protocss = re.sub(r"list@(\w+)\[(\d+)\]", self.replace_list_item, protocss)
                     for_pattern = re.compile(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+((.|\n)+?);\s+}\s+};",

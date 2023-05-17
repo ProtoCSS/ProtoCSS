@@ -26,7 +26,6 @@ color: #333;
     width: 50%;
     width: 75%;
     width: 100%;
-    width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
     width: 100%; /* Example for predefined shorthand */
 }
 
@@ -60,6 +59,7 @@ color: #333;
 
 
 /* For loop above */
+
 
 /* Propery-decleration shorthands */
 .main-container {
@@ -98,8 +98,8 @@ color: #333;
     text-decoration: none;
     display: flex;
     justify-content: space-between;
-    color: /* Error: Invalid list item 'list@fromHeader[8]' */; /* Example for variable usage import (defined in header.ptcss) */
-    color: /* Error: Invalid list item 'list@fromHeader[3]' */; /* Example for list-usage import (defined in header.ptcss) */
+    color:  "gray";
+    color:  "yellow";
     color: #2a9d8f;
 }
 
@@ -128,6 +128,7 @@ color: #333;
     display: flex;
     padding: 20px 0;
 }
+
 
 .sidebar {
     width: 25%;
@@ -245,10 +246,8 @@ body {
         padding: 20px;
         text-align: center;
     }
-
     .container {
         width: 100%;
-        padding: 10px;
         display: flex;
         justify-content: space-around;
         margin: 25px;

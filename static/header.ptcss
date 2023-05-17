@@ -8,6 +8,11 @@ mixin@maxin {
 
 @!headerColor: #2a9d8f;
 
+list@fromHeader: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
+list@wids: [25%, 50%, 75%, 100%];
+
+@!blackGray: list@fromHeader[8];
+
 header {
   background-color: %!headerColor;
   @p: 20px 0;
@@ -26,10 +31,7 @@ nav a:hover {
 
 
 /* List below */
-list@fromHeader: ["red", "green", "blue", "yellow", "orange", "purple", "pink", "brown", "gray", "black"];
-list@widths: [25%, 50%, 75%, 100%];
 
-@!blackGray: list@fromHeader[8];
 
 for color in fromHeader {
     .color {
@@ -47,6 +49,7 @@ for color in fromHeader {
     @w: list@widths[3];
     @w: list@widths[4]; /* Example for error */
     @w100; /* Example for predefined shorthand */
+    @c: %!blackGray;
 }
 
 
