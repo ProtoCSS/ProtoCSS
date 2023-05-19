@@ -40,15 +40,13 @@ for color in fromHeader {
     }
 };
 
-
 /* Example for list access usage */
 .example {
-    @w: list@widths[0];
-    @w: list@widths[1];
-    @w: list@widths[2];
-    @w: list@widths[3];
-    @w: list@widths[4]; /* Example for error */
-    @w100; /* Example for predefined shorthand */
+    @w: list@wids[0];
+    @w: list@wids[1];
+    @w: list@wids[2];
+    @w: list@wids[3];
+    @w100;
     @c: %!blackGray;
 }
 
@@ -62,3 +60,5 @@ for color in fromHeader {
     @jc: space-between;
     @ai: center;
 }
+
+

@@ -7,6 +7,11 @@
 
 
 
+
+
+
+
+
 header {
   background-color: #2a9d8f;
   padding: 20px 0;
@@ -25,9 +30,6 @@ nav a:hover {
 
 
 /* List below */
-
-
-
 
 
 .color-red {
@@ -82,15 +84,13 @@ nav a:hover {
 
 
 
-
 /* Example for list access usage */
 .example {
     width: 25%;
     width: 50%;
     width: 75%;
     width: 100%;
-    width: /* Error: Invalid list item 'list@widths[4]' */; /* Example for error */
-    width: 100%; /* Example for predefined shorthand */
+    width: 100%;
     color: "gray";
 }
 
@@ -108,3 +108,5 @@ nav a:hover {
     justify-content: space-between;
     align-items: center;
 }
+
+
