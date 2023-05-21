@@ -413,3 +413,5 @@ The resulting CSS output would look like this:
 ```
 
 As you can see, using a for loop in ProtoCSS can greatly simplify the process of generating repetitive CSS rules, and can be used in a wide range of scenarios.
+
+
