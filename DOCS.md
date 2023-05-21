@@ -331,3 +331,31 @@ The resulting CSS output would look like this:
 As you can see, using a for loop in ProtoCSS can greatly simplify the process of generating repetitive CSS rules, and can be used in a wide range of scenarios.
 
 
+## Mixins
+
+Mixins are a powerful feature of ProtoCSS that allow you to define reusable blocks of CSS code. They can be used to create custom properties, apply styles to multiple elements at once, or even generate entire CSS rulesets.
+
+### Defining a Mixin
+
+To define a mixin in ProtoCSS, you can use the `mixin@` syntax, followed by the name of the mixin and its contents enclosed in curly braces. Here's an example:
+
+``` css
+mixin@border-radius {
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+```
+
+In this example, we've defined a mixin called `border-radius` that applies a border-radius of 10px to an element.
+
+### Using a Mixin
+
+Once you've defined a mixin, you can use it throughout your ProtoCSS code by referencing its name. Here's an example that uses the border-radius mixin we defined earlier:
+
+``` css
+.box {
+  mixin@border-radius;
+}
+```
+
+In this example, we've applied the border-radius mixin to a box element.
