@@ -83,7 +83,7 @@ def convert(*args, **kwargs):
             if protoCSS:
                 css = converter.convert(protoCSS)
                 if css is not None:
-                    if not output_path:
+                    if output_path is None:
                         output_path = os.path.dirname(file_path)
                     fn = os.path.splitext(os.path.basename(file_path))[0]
                     output_filename = os.path.join(output_path, f"{fn}.css")
@@ -97,34 +97,54 @@ def convert(*args, **kwargs):
         except ProtoCSSError as e:
             print(f" {Fore.RED}{e}")
 
+# File-Path is working properly
     if args[0] in ("-f", "--file"):
-        file_path = args[2]
-        output_path = args[3] if len(args) > 2 else None
+        file_path = args[1]
+        output_path = None
+        if "-o" in args:
+            output_index = args.index("-o") + 1
+            if output_index < len(args):
+                output_path = args[output_index]
+                print(output_path)
         process_file(file_path, output_path)
 
+# TODO: Multi-File-Path is working properly, but tries to read the "-o" as a file path.
     elif args[0] in ("-mf", "--multi-file"):
-        file_paths = args[1:-1]
-        output_path = args[-1]
+        file_paths = args[1:]
+        output_path = None
+        if "-o" in args:
+            output_index = args.index("-o") + 1
+            if output_index < len(args):
+                output_path = args[output_index]
+                print(output_path)
         for file_path in file_paths:
             process_file(file_path, output_path)
 
+# Dir-Path is working properly
     elif args[0] in ("-d", "--dir"):
         dir_path = args[1]
-        output_path = args[2] if len(args) > 2 else None
+        output_path = None
+        if "-o" in args:
+            output_index = args.index("-o") + 1
+            if output_index < len(args):
+                output_path = args[output_index]
+                print(output_path)
         for file_path in glob(os.path.join(dir_path, '*.ptcss')):
             process_file(file_path, output_path)
 
+    # File-Default is working properly
     elif args[0] in ("-fd", "--file-def", "-mfd", "--multi-file-def"):
         file_paths = args[1:]
         for file_path in file_paths:
             process_file(file_path)
 
+    # Dir-Default is working properly
     elif args[0] in ("-dd", "--dir-def"):
         dir_path = args[1]
         for file_path in glob(os.path.join(dir_path, '*.ptcss')):
             process_file(file_path)
 
-    elif args[0] == "-h" or args[0] == "--help":
+    elif args[0] in ("-h", "--help"):
         print("""
     Usage: convert [options] [file|dir]
 
