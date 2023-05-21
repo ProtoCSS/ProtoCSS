@@ -223,94 +223,10 @@ Each of these elements provides unique capabilities that can significantly impro
 ## Supported Properties
 The ProtoCSS Preprocessor is designed to offer a comprehensive set of shorthand properties and CSS attributes, making it easier for developers to efficiently create and maintain styles. By providing a robust set of features, ProtoCSS allows you to focus on creating visually stunning and highly functional designs with greater ease and simplicity.
 
-In order to make your styling process more streamlined, the ProtoCSS Preprocessor supports an extensive list of shorthand properties. These shorthand properties help you write concise and easily understandable code, resulting in a more maintainable and efficient workflow.
-
-The following table showcases the shorthand properties currently supported:
-### Basic Properties
-|ProtoCSS Syntax|CSS Property Equivalent|
-|:---: | :---: |
-|@bg|background-color|
-|@c|color
-|@fs|font-size
-|@ff|font-family
-|@fw|font-weight
-|@lh|line-height
-|@m|margin
-|@mt|margin-top
-|@mr|margin-right
-|@mb|margin-bottom
-|@ml|margin-left
-|@p|padding
-|@pt|padding-top
-|@pr|padding-right
-|@pb|padding-bottom
-|@pl|padding-left
-|@w|width
-|@h|height
-|@br|border-radius
-|@bc|border-color
-|@bs|border-style
-|@bw|border-width
-
-### Layout Properties
-|ProtoCSS Syntax|CSS Property Equivalent|
-|:---: | :---: |
-|@d|display
-|@jc|justify-content
-|@flx|flex
-|@fld|flex-direction
-|@flw|flex-wrap
-|@flg|flex-grow
-|@fls|flex-shrink
-|@flb|flex-basis
-|@ai|align-items
-|@ac|align-content
-|@as|align-self
-|@fl|float
-|@pos|position
-|@t|top
-|@r|right
-|@b|bottom
-|@l|left
-|@z|z-index
-
-### Text Properties
-|ProtoCSS Syntax|CSS Property Equivalent|
-|:---: | :---: |
-|@op|opacity
-|@o|outline
-|@ov|overflow
-|@ta|text-align
-|@td|text-decoration
-|@ti|text-indent
-|@tt|text-transform
-|@va|vertical-align
-|@whs|white-space
-|@ws|word-spacing
-|@v|visibility
-|@lst|list-style-type
-|@ls|letter-spacing
-
-### Background and Border Properties
-|ProtoCSS Syntax|CSS Property Equivalent|
-|:---: | :---: |
-|@bgp|background-position
-|@bgr|background-repeat
-|@bgs|background-size
-|@bgimg|background-image
-|@tsh|text-shadow
-|@bxsh|box-shadow
-|@tr|transition
-|@bo|border
-|@br|border-radius
-|@bc|border-color
-|@bs|border-static
-|@bw|border-width
-|@olc|outline-color
-|@olw|outline
+List of supported properties can be found [here](https://github.com/Dcohen52/ProtoCSS/blob/main/SHORTHANDS_TABLE.md).
 
 ## Property-Declaration Shorthands
-Property-declaration shorthands, short for property declaration shorthands, are a set of convenient shorthand notations for commonly used CSS properties. They allow you to quickly and easily apply styling to elements without having to remember or type out the full CSS property names and values.
+Property-declaration shorthands are a set of convenient shorthand notations for commonly used CSS properties. They allow you to quickly and easily apply styling to elements without having to remember or type out the full CSS property names and values.
 
 Usage
 To apply a property-declaration shorthand, you simply need to include the corresponding shorthand notation in your CSS code. Here's an example:
@@ -331,7 +247,7 @@ To apply a property-declaration shorthand, you simply need to include the corres
 }
 ```
 
-List of supported property-declaration shorthands will be added soon.
+List of supported property-declaration shorthands can be found [here](https://github.com/Dcohen52/ProtoCSS/blob/main/PD_SHORTHANDS_TABLE.md).
 
 
 ## Lists
