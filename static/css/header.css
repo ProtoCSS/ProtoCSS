@@ -1,6 +1,6 @@
 :root {
 --headerColor: #2a9d8f;
---blackGray: "gray";
+--blackGray:  "gray";
 }
 
 
@@ -87,11 +87,11 @@ nav a:hover {
 /* Example for list access usage */
 .example {
     width: 25%;
-    width: 50%;
-    width: 75%;
+    width:  50%;
+    width:  75%;
+    width:  100%;;
     width: 100%;
-    width: 100%;
-    color: "gray";
+    color:  "gray";
 }
 
 
