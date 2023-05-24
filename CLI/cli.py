@@ -2,6 +2,7 @@ from colorama import Fore, Style
 from CLI.cli_helper import read_version, documentation, convert, close
 from protocss import ProtoCSS
 
+
 class UnknownCommandError(Exception):
     pass
 
@@ -12,9 +13,9 @@ class NoArgumentsError(Exception):
 
 def print_header():
     __version__ = read_version()
-    with open("./CLI/ptcss_icon_2.ans", "r") as file:
+    with open("./ptcss_icon_2.ans", "r") as file:
         contents = file.read()
-        print(contents)
+        print(f"{Fore.MAGENTA}{contents}{Style.RESET_ALL}")
     print(
         f"{Fore.LIGHTWHITE_EX}ProtoCSS v{__version__}{Style.RESET_ALL} - For more information: {Fore.LIGHTCYAN_EX}https://protocss.dev{Style.RESET_ALL}\nType 'help' for general information, supported commands and more.\n")
 
