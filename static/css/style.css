@@ -1,7 +1,5 @@
 :root {
 --blue: #2196F3;
---num1: 10;
---num2: 50;
 --red: #f44336;
 }
 
@@ -10,7 +8,7 @@
 @import url("static/css/header.ptcss"); /* Example for direct .ptcss import */
 @import url("static/footer.ptcss"); /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
-@import url("static/css/math.ptcss");
+
 
 /* Base styles */
 font-size: 16px;
@@ -31,23 +29,9 @@ color: #333;
     width: 100%; /* Example for predefined shorthand */
 }
 
-.function_example {
-    --width: 10px;
-    --height: 10px;
-    --z_index: 100;
-}
-
-
-
-
-
-
 .import_example {
     color: #2a9d8f;
-    width: 1000000;
-    width: 0.2;
 }
-
 
 #logo-25 {
    color: black;
@@ -215,7 +199,6 @@ h2 {
 #logo {
     font-size: 1.5em;
     font-weight: bold;
-    width: 100.0;
 }
 
 input[type="submit"] {
@@ -277,6 +260,3 @@ body {
         width: 70%;
     }
 }
-
-
-

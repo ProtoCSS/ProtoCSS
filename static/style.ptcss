@@ -3,7 +3,7 @@ import "header.css"; /* Example for direct .css import */
 import "header.ptcss"; /* Example for direct .ptcss import */
 import "footer"; /* Example for direct import without specified file-type */
 @import url("static/css/header.css"); /* Example for vanilla css import support */
-import "math.ptcss";
+
 
 /* Base styles */
 @fs: 16px;
@@ -24,25 +24,9 @@ list@widths: [25%, 50%, 75%, 100%];
     @w100; /* Example for predefined shorthand */
 }
 
-.function_example {
-    --width: 10px;
-    --height: 10px;
-    --z_index: 100;
-}
-
-@math pow(a, b) {
-  @return (a ** b);
-}
-
-@!num1: 10;
-@!num2: 50;
-
 .import_example {
     @c: %!headerColor;
-    @w: @pow(10, 6);
-    @w: @div(%!num1, %!num2);
 }
-
 
 for width in widths {
     #logo {
@@ -186,7 +170,6 @@ h2 {
 #logo {
     font-size: 1.5em;
     font-weight: bold;
-    @w: @perc(1, 1);
 }
 
 input[type="submit"] {
@@ -247,6 +230,4 @@ if (min-width: 30em) and (orientation: landscape) {
         @w70;
     }
 };
-
-
 
