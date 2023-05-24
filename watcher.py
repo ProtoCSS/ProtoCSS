@@ -6,7 +6,7 @@ import time
 
 
 if __name__ == '__main__':
-    path = "./static"
+    path = "./static"  # Directory to watch
     converter = ProtoCSS()
     event_handler = converter.FileChangeHandler(converter)
     observer = Observer()
