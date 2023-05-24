@@ -18,7 +18,6 @@ def read_version():
         print(f"Failed to read version from .env file due to error: {e}")
         return "unknown"
 
-
 __version__ = read_version()
 
 

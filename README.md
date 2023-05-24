@@ -39,3 +39,4 @@ I appreciate and value contributions to the ProtoCSS project. Whether you're a s
 
 ## License
 ProtoCSS is distributed under the terms of the MIT License. For more details, please refer to the LICENSE file included in the project repository.
+

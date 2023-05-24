@@ -18,7 +18,6 @@ def print_header():
     print(
         f"{Fore.LIGHTWHITE_EX}ProtoCSS v{__version__}{Style.RESET_ALL} - For more information: {Fore.LIGHTCYAN_EX}https://protocss.dev{Style.RESET_ALL}\nType 'help' for general information, supported commands and more.\n")
 
-
 def process_command(command):
     if command == "help":
         documentation()
