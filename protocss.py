@@ -1,3 +1,4 @@
+import ast
 import os
 import re
 from watchdog.events import FileSystemEventHandler
@@ -16,7 +17,8 @@ def read_version():
             return __version__
     except Exception as e:
         print(f"Failed to read version from .env file due to error: {e}")
-        return "unknown"
+        return "-unknown"
+
 
 __version__ = read_version()
 
@@ -30,6 +32,8 @@ class ProtoCSS:
         self.imported_variables = {}
         self.imported_lists = {}
         self.imported_mixins = {}
+        self.functions = {}
+        self.imported_functions = {}
 
     def replace_list_item(self, match):
         list_name, index = match.groups()
@@ -46,6 +50,12 @@ class ProtoCSS:
             return self.lists[list_name][index]
         else:
             raise ProtoCSSError(f"Invalid list item 'list@{list_name}[{index}]'")
+
+    def replace_custom_function(self, match):
+        func_name, args, body = match.groups()
+
+        # Store the function definition
+        self.functions[func_name] = (args, body)
 
     def convert(self, protocss: str, base_path: str = "static/") -> str:
         try:
@@ -104,7 +114,25 @@ class ProtoCSS:
                                                     mixin_content += mixin_line + "\n\t"
                                             self.imported_mixins[f'{mixin_name}'] = mixin_content.replace("@", "", 1)[
                                                                                     : -2]
-                                            # print(f"{Fore.MAGENTA}Mixin: {self.imported_mixins}{Fore.RESET}")
+                                        elif line.startswith("@math") and line.endswith("{"):
+                                            func_name = line.strip().split("@math")[1].split("(")[0].strip()
+                                            # print(f"{Fore.LIGHTBLACK_EX}Function: !{func_name}!{Fore.RESET}")
+                                            func_args = line.strip().split("(")[1].replace(")", "").strip("{ ")
+                                            func_args = func_args.split(",")
+                                            func_args = [arg.strip() for arg in func_args]
+                                            # print(f"{Fore.LIGHTBLACK_EX}Function: !{func_name}!{Fore.RESET}")
+                                            # print(f"{Fore.LIGHTBLACK_EX}Args: !{func_args}!{Fore.RESET}")
+                                            func_body = [return_value for return_value in lines[new_line_number:] if
+                                                         return_value.strip().startswith("@return")]
+                                            func_body = func_body[0].strip().split("@return")[1].strip()
+                                            func_body = func_body.replace(";", "").strip()
+                                            func_body = func_body.replace("(", "", 1)
+                                            func_body = func_body.replace(")", "", 1)
+                                            # print(f"{Fore.LIGHTBLACK_EX}Body: !{func_body}!{Fore.RESET}")
+
+                                            self.imported_functions[f'{func_name}'] = (func_args, func_body)
+                                            # print(f"{Fore.LIGHTGREEN_EX}{self.imported_functions}{Fore.RESET}")
+
                                     except Exception as e:
                                         print(f"{Fore.RED}Error: {e}{Fore.RESET}")
                                     new_line_number += 1
@@ -254,7 +282,8 @@ class ProtoCSS:
                             else:
                                 raise ProtoCSSError(f"In loop: List '{list_name}' not found.")
                         except Exception as e:
-                            if re.search(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+((.|\n)+?);\s+}\s+}", protocss):
+                            if re.search(r"for\s+(\w+)\s+in\s+(\w+)\s+{\s+(.[^{]+)\s+{\s+((.|\n)+?);\s+}\s+}",
+                                         protocss):
                                 raise ProtoCSSError(f"Forgot to add semicolon after for loop?")
                             else:
                                 raise ProtoCSSError(f"Failed to extract for loop contents: {e}")
@@ -284,6 +313,74 @@ class ProtoCSS:
 
                     protocss = re.sub(r"if\s*\((.+?)\)\s*{\s*(.+?)\s*}\s*else\s*{\s*(.+?)\s*};", replace_condition,
                                       protocss, flags=re.DOTALL)
+
+                    def replace_custom_function(match):
+                        func_name, args, body = match.groups()
+                        args_list = [arg.strip() for arg in args.split(',')]
+                        self.functions[func_name] = (args_list, body)
+                        # print(f"{self.functions}")
+                        # print(f"Added function '{func_name}' with arguments {args_list} and body '{body}'")
+                        return ""
+                        # return f"@{func_name}({args}) {{\n@return ({body});\n}}\n"
+                        # return execute_custom_function(func_name, args_list)
+
+                    protocss = re.sub(r"@math\s+(\w+)\s*\((.*?)\)\s*\{\s*@return\s+\((.*?)\);\s*\}",
+                                      replace_custom_function, protocss)
+
+                    # TODO: Replace custom functions
+                    def execute_custom_function(match):
+                        func_name, args = match.groups()
+
+                        # print(f"1 - Executing function '{func_name}' with arguments {args}")
+
+                        if func_name in self.functions:
+                            func_args, func_body = self.functions[func_name]
+                            # print(f"2 - Executing function '{func_name}' with arguments {args} and body '{func_body}'")
+                            arg_values = []
+
+                            if len(args.split(',')) != len(func_args):
+                                # print(f"Function '{func_name}' takes {len(func_args)} ({func_args}) arguments, but {len(args)} ({args.split(',')}) were given.")
+                                raise ProtoCSSError(f"Invalid number of arguments for function '{func_name}'.")
+
+                            # turn the arguments into strings and replace the function arguments with the values
+                            for arg in args.split(','):
+                                arg_values.append(str(arg.strip()))
+                            for i in range(len(func_args)):
+                                # print(f"Replacing '{func_args[i]}' with '{arg_values[i]}'")
+                                func_args[i] = func_args[i].strip()
+                                func_body = func_body.replace(func_args[i], arg_values[i])
+
+                            result = eval(func_body)
+
+                            # Convert the result to a string and return
+                            return str(result)
+                        elif func_name in self.imported_functions:
+                            # print(f"Executing imported function '{func_name}' with arguments {args}")
+                            func_args, func_body = self.imported_functions[func_name]
+                            # print(f"2 - Executing function '{func_name}' with arguments {args} and body '{func_body}'")
+                            arg_values = []
+
+                            if len(args.split(',')) != len(func_args):
+                                # print(f"Function '{func_name}' takes {len(func_args)} ({func_args}) arguments, but {len(args)} ({args.split(',')}) were given.")
+                                raise ProtoCSSError(f"Invalid number of arguments for function '{func_name}'.")
+
+                            # turn the arguments into strings and replace the function arguments with the values
+                            for arg in args.split(','):
+                                arg_values.append(str(arg.strip()))
+                            for i in range(len(func_args)):
+                                # print(f"Replacing '{func_args[i]}' with '{arg_values[i]}'")
+                                func_args[i] = func_args[i].strip()
+                                func_body = func_body.replace(func_args[i], arg_values[i])
+
+                            result = eval(func_body)
+
+                            # Convert the result to a string and return
+                            return str(result)
+
+                        else:
+                            raise ProtoCSSError(f"Function '{func_name}' not found.")
+
+                    protocss = re.sub(r"@(\w+)\(([^)]*)\)", execute_custom_function, protocss)
 
                     return protocss
                 except Exception as e:

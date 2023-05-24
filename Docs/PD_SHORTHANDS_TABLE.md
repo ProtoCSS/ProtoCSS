@@ -344,4 +344,3 @@ This table provides a list of property declaration shorthand properties and thei
 | @lh1      | line-height: 1  |
 | @lh15     | line-height: 1.5  |
 | @lh2      | line-height: 2  |
-

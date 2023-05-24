@@ -369,4 +369,3 @@ This table provides a list of shorthand properties and their corresponding CSS p
 | @skw      | skew         |
 | @tran     | translate    |
 
-

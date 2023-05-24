@@ -118,4 +118,3 @@ convert -mfd file1.ptcss file2.ptcss file3.ptcss
 ```commandline
 convert -dd input-dir
 ```
-

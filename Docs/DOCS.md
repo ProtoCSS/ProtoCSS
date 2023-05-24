@@ -359,4 +359,3 @@ Once you've defined a mixin, you can use it throughout your ProtoCSS code by ref
 ```
 
 In this example, we've applied the border-radius mixin to a box element.
-

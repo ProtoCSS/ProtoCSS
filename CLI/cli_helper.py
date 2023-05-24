@@ -17,14 +17,15 @@ def icon_ans():
 
 def read_version():
     try:
-        with open("./helper/.env", "r") as file:
+        with open("../helper/.env", "r") as file:
             contents = file.read()
             version_match = re.search(r"VERSION=(\d+)\.(\d+)\.(\d+)-(.+)", contents)
             __version__ = version_match.group(0).split("=")[1]
             return __version__
     except Exception as e:
-        print(f"Failed to read version from .env file due to error: {e}")
-        return "unknown"
+        # print(f"Failed to read version from .env file due to error: {e}")
+        return "-unknown"
+
 
 def close():
     sys.exit(0)
