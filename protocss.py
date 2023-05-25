@@ -335,11 +335,13 @@ class ProtoCSS:
 
                         if func_name in self.functions:
                             func_args, func_body = self.functions[func_name]
-                            # print(f"2 - Executing function '{func_name}' with arguments {args} and body '{func_body}'")
+                            # print(f"2 - Executing function '{func_name}' with arguments {args} and body '{
+                            # func_body}'")
                             arg_values = []
 
                             if len(args.split(',')) != len(func_args):
-                                # print(f"Function '{func_name}' takes {len(func_args)} ({func_args}) arguments, but {len(args)} ({args.split(',')}) were given.")
+                                # print(f"Function '{func_name}' takes {len(func_args)} ({func_args}) arguments,
+                                # but {len(args)} ({args.split(',')}) were given.")
                                 raise ProtoCSSError(f"Invalid number of arguments for function '{func_name}'.")
 
                             # turn the arguments into strings and replace the function arguments with the values
@@ -357,11 +359,13 @@ class ProtoCSS:
                         elif func_name in self.imported_functions:
                             # print(f"Executing imported function '{func_name}' with arguments {args}")
                             func_args, func_body = self.imported_functions[func_name]
-                            # print(f"2 - Executing function '{func_name}' with arguments {args} and body '{func_body}'")
+                            # print(f"2 - Executing function '{func_name}' with arguments {args} and body '{
+                            # func_body}'")
                             arg_values = []
 
                             if len(args.split(',')) != len(func_args):
-                                # print(f"Function '{func_name}' takes {len(func_args)} ({func_args}) arguments, but {len(args)} ({args.split(',')}) were given.")
+                                # print(f"Function '{func_name}' takes {len(func_args)} ({func_args}) arguments,
+                                # but {len(args)} ({args.split(',')}) were given.")
                                 raise ProtoCSSError(f"Invalid number of arguments for function '{func_name}'.")
 
                             # turn the arguments into strings and replace the function arguments with the values

@@ -24,14 +24,8 @@ list@widths: [25%, 50%, 75%, 100%];
     @w100; /* Example for predefined shorthand */
 }
 
-.function_example {
-    --width: 10px;
-    --height: 10px;
-    --z_index: 100;
-}
-
-@math pow(a, b) {
-  @return (a ** b);
+@math pow(a, b, c ,d) {
+    @return ((a ** b) + c + d);
 }
 
 @!num1: 10;
@@ -39,10 +33,9 @@ list@widths: [25%, 50%, 75%, 100%];
 
 .import_example {
     @c: %!headerColor;
-    @w: @pow(10, 6);
-    @w: @div(%!num1, %!num2);
+    @w: @pow(3, 2, 4 ,2); /* Example for not-imported function usage */
+    @w: @div(%!num1, %!num2); /* Example for imported function usage */
 }
-
 
 for width in widths {
     #logo {

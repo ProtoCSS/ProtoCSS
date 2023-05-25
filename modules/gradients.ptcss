@@ -1,0 +1,35 @@
+/* Gradients */
+
+@!gTigersEye: linear-gradient(to right, #4b2412, #daa312);
+@!gCarnalian: linear-gradient(to right, #d03a09, #c87546);
+@!gAgate: linear-gradient(to right, #3c3b3f, #605c3c);
+@!gAmethyst: linear-gradient(to right, #702963, #b76ba3);
+@!gAquamarine: linear-gradient(to right, #0b3c49, #1c6e8c);
+@!gAzurite: linear-gradient(to right, #bf9871, #2427a7, #4a8aed, #6dcc9f);
+@!gBeryl: linear-gradient(to right, #09805b, #11ffb5);
+@!gBloodstone: linear-gradient(to right, #334a53, #334a53 ,#f3513a, #f3513a);
+@!gAmetrine: linear-gradient(to right, #b06b9f, #e5a27b);
+@!gAfghanite: linear-gradient(to right, #0b3c49, #1c6e8c, #0b3c49);
+@!gAtlantisite: linear-gradient(to right, #b7a533, #392f1c, #876b94, #b7a533);
+@!gBumbleBeeJasper: linear-gradient(to right,
+
+/* Pastel Colors Gradients */
+
+@!gPastelRed: linear-gradient(to right, #ff6b6b, #ffbaba);
+@!gPastelOrange: linear-gradient(to right, #ff9f43, #ffd8a8);
+@!gPastelYellow: linear-gradient(to right, #ffda79, #fff1b3);
+@!gPastelGreen: linear-gradient(to right, #b8e994, #e9f7ef);
+@!gPastelBlue: linear-gradient(to right, #9ab5f1, #c7ecee);
+@!gPastelIndigo: linear-gradient(to right, #786fa6, #b8c1ec);
+@!gPastelGrey: linear-gradient(to right, #bdc3c7, #e2e2e2);
+@!gPastelPink: linear-gradient(to right, #f8a5c2, #f78fb3);
+@!gPastelBrown: linear-gradient(to right, #d7ccc8, #efebe9);
+
+/* Vibrant Colors Gradients */
+@!gPurple: linear-gradient(to right, #b71540, #eb2f06);
+@!gRed: linear-gradient(to right, #ff0000, #ff4d4d);
+@!gOrange: linear-gradient(to right, #ff8008, #ffc837);
+@!gYellow: linear-gradient(to right, #fbc531, #ffde59);
+@!gGreen: linear-gradient(to right, #009432, #0be881);
+@!gBlue: linear-gradient(to right, #0652DD, #12CBC4);
+@!gIndigo: linear-gradient(to right, #6F1E51, #833471);

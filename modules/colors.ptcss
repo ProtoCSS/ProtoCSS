@@ -1,0 +1,168 @@
+/* Pastel Colors */
+
+@!cPeach: #FFCBA4;
+@!cBlush: #FFD1DC;
+@!lavender: #E6E6FA;
+@!mint: #98FF98;
+@!sky: #87CEEB;
+@!periwinkle: #CCCCFF;
+@!coral: #FF7F50;
+@!lilac: #C8A2C8;
+@!honeydew: #F0FFF0;
+@!tiffany: #81D8D0;
+@!salmon: #FA8072;
+@!rose: #FF66CC;
+@!lemon: #FFFACD;
+@!pear: #D1E231;
+@!cream: #FFFDD0;
+@!peachpuff: #FFDAB9;
+@!pale: #DB7093;
+@!babyblue: #89CFF0;
+@!powderpink: #FFB6C1;
+@!lavenderblush: #FFF0F5;
+@!mellowyellow: #F8DE7E;
+@!cottoncandy: #FFBCD9;
+@!duckeggblue: #E0FFFF;
+
+/* Dark Colors */
+
+@!black: #000000;
+@!charcoal: #36454F;
+@!slate: #708090;
+@!steel: #4682B4;
+@!silver: #C0C0C0;
+@!smoke: #D3D3D3;
+@!grey: #808080;
+@!ash: #B2BEB5;
+@!ashen: #778899;
+@!ashen2: #A9A9A9;
+@!ashen3: #DCDCDC;
+@!ashen4: #F5F5F5;
+@!white: #FFFFFF;
+
+/* Accent Colors */
+
+@!red: #FF0000;
+@!orange: #FFA500;
+@!yellow: #FFFF00;
+@!green: #008000;
+@!blue: #0000FF;
+@!purple: #800080;
+@!brown: #A52A2A;
+@!tan: #D2B48C;
+@!cyan: #00FFFF;
+@!magenta: #FF00FF;
+@!pink: #FFC0CB;
+@!gold: #FFD700;
+@!lime: #00FF00;
+@!olive: #808000;
+@!teal: #008080;
+@!navy: #000080;
+@!maroon: #800000;
+@!apricot: #FBCEB1;
+@!aqua: #00FFFF;
+@!beige: #F5F5DC;
+@!bisque: #FFE4C4;
+@!brick: #B22222;
+@!bronze: #CD7F32;
+@!burgundy: #800020;
+@!cerulean: #007BA7;
+@!chocolate: #D2691E;
+
+/* Other Colors */
+
+@!transparent: transparent;
+@!inherit: inherit;
+@!initial: initial;
+@!unset: unset;
+@!currentColor: currentColor;
+@!none: none;
+@!auto: auto;
+
+
+/* Earth Tones */
+
+@!sand: #F4A460;
+@!clay: #D1735E;
+@!moss: #8A9A5B;
+@!sienna: #A0522D;
+@!oatmeal: #BEBDAA;
+@!sepia: #704214;
+@!sage: #87AE73;
+@!olive: #808000;
+@!mud: #70543E;
+@!dirt: #9B7653;
+@!dust: #B2996E;
+
+/* Jewel Tones */
+
+@!ruby: #E0115F;
+@!garnet: #733635;
+@!citrine: #E4D00A;
+@!topaz: #FFC87C;
+@!emerald: #50C878;
+@!jade: #00A86B;
+@!turquoise: #40E0D0;
+@!sapphire: #0F52BA;
+@!lapis: #0000f7;
+@!lapis2: #26619C;
+@!amethyst: #9966CC;
+@!ametrine: #7E3A15;
+@!ametrine2: #CB9Ef7;
+@!opal: #A8C3BC;
+@!pearl: #F0EAD6;
+@!moonstone: #3AA8C1;
+@!carneilian: #DB5921;
+@!onyx: #353839;
+@!agate: #B16D52;
+@!angelite: #C9E8F5;
+@!amazonite: #00C4B0;
+@!amber: #FFBF00;
+@!aquamarine: #7FFFD4;
+@!azurite: #1C2841;
+@!beryl: #E6E6FA;
+@!bloodstone: #A62A2A;
+@!aragonite: #843719;
+@!turmeline: #E30B5C;
+@!blackTourmaline: #0B0B0B;
+@!aventurine: #a6e9c7;
+@!tigerseye: #E08D3C;
+/* Nature Tones */
+
+@!sky: #87CEEB;
+@!cloud: #F0F8FF;
+@!sea: #1E90FF;
+@!ocean: #006994;
+@!lake: #00FFFF;
+@!river: #6495ED;
+@!forest: #228B22;
+@!grass: #7CFC00;
+@!tree: #228B22;
+@!leaf: #71AA34;
+@!wood: #DEB887;
+@!desert: #C19A6B;
+@!beach: #F5DEB3;
+@!sand: #F4A460;
+@!dust: #B2996E;
+@!clay: #D1735E;
+
+/* Vintage Tones */
+
+@!ivory: #FFFFF0;
+@!champagne: #F7E7CE;
+@!pearl: #F0EAD6;
+@!bone: #E3DAC9;
+@!antique: #FAEBD7;
+@!linen: #FAF0E6;
+@!lace: #FDF5E6;
+@!parchment: #F1E9C9;
+@!sepia: #704214;
+@!coffee: #6F4E37;
+@!tea: #D4B483;
+@!tobacco: #715B47;
+@!leather: #967059;
+@!wood: #DEB887;
+@!cork: #D2691E;
+@!copper: #B87333;
+@!bronze: #CD7F32;
+@!brass: #B5A642;
