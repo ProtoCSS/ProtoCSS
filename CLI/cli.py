@@ -13,7 +13,7 @@ class NoArgumentsError(Exception):
 
 def print_header():
     __version__ = read_version()
-    with open("./ptcss_icon_2.ans", "r") as file:
+    with open("ptcss_ascii.ans", "r") as file:
         contents = file.read()
         print(f"{Fore.MAGENTA}{contents}{Style.RESET_ALL}")
     print(

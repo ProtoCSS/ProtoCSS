@@ -47,18 +47,18 @@ if os.path.exists(".env"):
         file.write(f'DATE_TIME="{now}"\n')
         file.write(f"SYSTEM={os_type}\n")
         file.write(f"SYSTEM_TYPE={system_type}\n")
-        file.write(f"VERSION={new_major_version}.{new_minor_version}.{new_patch_version}-{new_state}")
+        file.write(f"VERSION={new_major_version}.{new_minor_version}.{new_patch_version}-{new_state}\n")
 
     print(
         f"{Fore.LIGHTGREEN_EX}New version:{Style.RESET_ALL} {new_major_version}.{new_minor_version}.{new_patch_version}-{new_state}")
 else:
     with open(".env", "w") as file:
-        version = "1.0.0-major"
+        version = "0.0.1-dev"
         now = datetime.datetime.now().strftime("%B %d, %Y %H:%M:%S")
         file.write(f'DATE_TIME="{now}"\n')
         file.write(f"SYSTEM={os_type}\n")
         file.write(f"SYSTEM_TYPE={system_type}\n")
-        file.write(f"VERSION={version}")
+        file.write(f"VERSION={version}\n")
     print(f"Initial version: {version}")
 
 with open(".env", "r") as file:

@@ -1,4 +1,5 @@
 import ast
+import json
 import os
 import re
 from watchdog.events import FileSystemEventHandler
@@ -419,12 +420,16 @@ class ProtoCSS:
         def process(self, file_path):
             print(f" {Fore.BLUE}* Processing {file_path}")
             try:
+                with open("config.json", "r") as file:
+                    config = json.load(file)
+                    __static_path__ = config["STATIC_PATH"]
+
                 protoCSS = read_protocss_file(file_path)
                 if protoCSS:
                     css = self.converter.convert(protoCSS)
                     if css is not None:
                         fn = os.path.splitext(os.path.basename(file_path))[0]
-                        output_filename = f"static/css/{fn}.css"
+                        output_filename = f"{__static_path__}css/{fn}.css"
                         write_css_file(output_filename, css)
                         print(
                             f"\n\t{Back.BLUE}{Fore.LIGHTWHITE_EX}\t{fn}.ptcss converted successfully to {output_filename}\t{Style.RESET_ALL}\n")
@@ -451,6 +456,8 @@ def read_protocss_file(filename: str) -> str:
 def write_css_file(filename: str, css: str) -> None:
     print(f" {Fore.BLUE}* Writing to {filename}")
     try:
+        if not os.path.exists(os.path.dirname(filename)):
+            os.makedirs(os.path.dirname(filename))
         with open(filename, "w") as f:
             f.write(css)
     except Exception as e:

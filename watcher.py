@@ -1,3 +1,4 @@
+import json
 import os
 from protocss import ProtoCSS
 from watchdog.observers import Observer
@@ -5,8 +6,12 @@ from watchdog.events import FileSystemEventHandler
 import time
 
 
+with open("config.json", "r") as file:
+    config = json.load(file)
+    __static_path__ = config["STATIC_PATH"]
+
 if __name__ == '__main__':
-    path = "./static"
+    path = __static_path__
     converter = ProtoCSS()
     event_handler = converter.FileChangeHandler(converter)
     observer = Observer()
