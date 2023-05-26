@@ -1,3 +1,8 @@
+###########################
+# Shorthands Dictionaries #
+###########################
+
+
 shorthand_properties = {
     "@bg": "background-color",
     "@c": "color",

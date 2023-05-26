@@ -1,3 +1,7 @@
+########################################
+# Generates default configuration file #
+########################################
+
 import json
 
 config = {

@@ -1,4 +1,10 @@
+##################
+# Error handling #
+##################
+
+
 from colorama import Fore, Style
+
 
 class ProtoCSSError(Exception):
     def __init__(self, message, line_number=None):

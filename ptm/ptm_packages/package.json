@@ -1,7 +1,0 @@
-{
-  "name": "math",
-  "version": "0.0.1",
-  "description": "Core math functions for ProtoCSS.",
-  "author": "ProtoCSS",
-  "main": "../modules/math.ptcss"
-}
