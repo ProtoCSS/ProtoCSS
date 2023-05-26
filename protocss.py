@@ -1,3 +1,8 @@
+###########################
+# ProtoCSS main algorithm #
+###########################
+
+
 import ast
 import json
 import os
@@ -8,6 +13,9 @@ from colorama import Fore, Back, Style, init
 from datetime import datetime
 from helper.errors import ProtoCSSError
 
+with open("config.json", "r") as file:
+    config = json.load(file)
+    __static_path__ = config["STATIC_PATH"]
 
 def read_version():
     try:
@@ -399,7 +407,10 @@ class ProtoCSS:
         def __init__(self, converter):
             print(
                 f"{Fore.LIGHTWHITE_EX}ProtoCSS v{__version__}{Style.RESET_ALL} - For more information {Fore.CYAN}https://protocss.dev{Style.RESET_ALL}\n")
-            print(f"{Fore.LIGHTCYAN_EX} * Watching for changes...\n{Style.RESET_ALL}")
+            if __static_path__ == "./static/":
+                print(f"{Fore.LIGHTCYAN_EX} * Watching for changes...\n{Style.RESET_ALL}")
+            else:
+                print(f"{Fore.LIGHTCYAN_EX} * Watching for changes in {__static_path__}...\n{Style.RESET_ALL}")
             self.converter = converter
             self.now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
@@ -420,10 +431,6 @@ class ProtoCSS:
         def process(self, file_path):
             print(f" {Fore.BLUE}* Processing {file_path}")
             try:
-                with open("config.json", "r") as file:
-                    config = json.load(file)
-                    __static_path__ = config["STATIC_PATH"]
-
                 protoCSS = read_protocss_file(file_path)
                 if protoCSS:
                     css = self.converter.convert(protoCSS)
