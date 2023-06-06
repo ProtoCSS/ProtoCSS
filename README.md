@@ -1,3 +1,5 @@
+![ProtoCSS Icon](https://github.com/Dcohen52/ProtoCSS/assets/26333525/7236ffed-8292-4009-85a8-c137fd19dd55)
+
 # ProtoCSS 
 [![Version](https://img.shields.io/badge/0.0.1-dev-blue)](https://github.com/Dcohen52/ProtoCSS/tree/main)
 [![License](https://img.shields.io/badge/License-MIT-green)](https://mit-license.org/)
