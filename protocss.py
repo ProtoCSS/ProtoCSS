@@ -13,9 +13,16 @@ from colorama import Fore, Back, Style, init
 from datetime import datetime
 from helper.errors import ProtoCSSError
 
-with open("config.json", "r") as file:
+# WINDOWS
+with open("../config.json", "r") as file:
     config = json.load(file)
     __static_path__ = config["DEFAULT_PATH"]
+
+
+# MAC
+# with open("config.json", "r") as file:
+#     config = json.load(file)
+#     __static_path__ = config["DEFAULT_PATH"]
 
 
 def read_version():

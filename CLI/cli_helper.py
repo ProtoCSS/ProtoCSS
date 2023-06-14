@@ -1,8 +1,7 @@
 ################################
 # Helper functions for the CLI #
 ################################
-
-
+import json
 import os
 import re
 import sys
@@ -48,6 +47,7 @@ def documentation():
             - version: Displays the current version of ProtoCSS.
             - help: Displays this documentation.
             - clear, cls: Clears the screen.
+            - gconfig: Generates a config file for ProtoCSS.
         """
 
     docs = docs_general
@@ -167,3 +167,15 @@ def convert(*args, **kwargs):
             """)
     else:
         print("Error: Unknown argument")
+
+
+def generate_config():
+    config = {
+        "DEFAULT_PATH": "./static/",
+        "CLI_OUTPUT_PATH": "./static/"
+    }
+
+    output_file = "../config.json"
+
+    with open(output_file, "w") as f:
+        json.dump(config, f, indent=4)

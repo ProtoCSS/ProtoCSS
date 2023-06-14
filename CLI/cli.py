@@ -4,7 +4,7 @@
 
 
 from colorama import Fore, Style
-from CLI.cli_helper import read_version, documentation, convert, close
+from CLI.cli_helper import read_version, documentation, convert, close, generate_config
 from protocss import ProtoCSS
 
 
@@ -39,6 +39,13 @@ def process_command(command):
     elif command == "version":
         __version__ = read_version()
         print(f"{__version__}")
+    elif command == "gconfig":
+        print(f"\n{Fore.LIGHTWHITE_EX}    Generating config file...   {Style.RESET_ALL}")
+        try:
+            generate_config()
+            print(f"{Fore.LIGHTGREEN_EX}    Configuration file generated successfully!{Style.RESET_ALL}")
+        except Exception as e:
+            print(f"{Fore.LIGHTRED_EX}Error: {str(e)}{Style.RESET_ALL}")
     else:
         raise UnknownCommandError(f"Unknown command '{command}'")
 
@@ -48,7 +55,7 @@ if __name__ == "__main__":
 
     while True:
         try:
-            command = input(f"{Fore.LIGHTWHITE_EX}ProtoCSS >{Style.RESET_ALL} ")
+            command = input(f"{Fore.LIGHTWHITE_EX}ProtoCSS >{Style.RESET_ALL} ").lower()
             process_command(command)
         except KeyboardInterrupt:
             break
