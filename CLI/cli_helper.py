@@ -102,7 +102,7 @@ def convert(*args, **kwargs):
         except ProtoCSSError as e:
             print(f" {Fore.RED}{e}")
 
-# File-Path is working properly
+    # File-Path is working properly
     if args[0] in ("-f", "--file"):
         file_path = args[1]
         output_path = None
@@ -113,7 +113,7 @@ def convert(*args, **kwargs):
                 print(output_path)
         process_file(file_path, output_path)
 
-# TODO: Multi-File-Path is working properly, but tries to read the "-o" as a file path.
+    # TODO: Multi-File-Path is working properly, but tries to read the "-o" as a file path.
     elif args[0] in ("-mf", "--multi-file"):
         file_paths = args[1:]
         output_path = None
@@ -125,7 +125,7 @@ def convert(*args, **kwargs):
         for file_path in file_paths:
             process_file(file_path, output_path)
 
-# Dir-Path is working properly
+    # Dir-Path is working properly
     elif args[0] in ("-d", "--dir"):
         dir_path = args[1]
         output_path = None

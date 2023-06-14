@@ -11,7 +11,7 @@
 @!gAmetrine: linear-gradient(to right, #b06b9f, #e5a27b);
 @!gAfghanite: linear-gradient(to right, #0b3c49, #1c6e8c, #0b3c49);
 @!gAtlantisite: linear-gradient(to right, #b7a533, #392f1c, #876b94, #b7a533);
-@!gBumbleBeeJasper: linear-gradient(to right,
+@!gBumbleBeeJasper: linear-gradient(to right, #f8b500, #000000);
 
 /* Pastel Colors Gradients */
 

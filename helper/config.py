@@ -5,7 +5,8 @@
 import json
 
 config = {
-    "STATIC_PATH": "./static/"
+    "DEFAULT_PATH": "./static/",
+    "CLI_OUTPUT_PATH": "./static/"
 }
 
 output_file = "../config.json"

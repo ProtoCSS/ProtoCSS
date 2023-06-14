@@ -15,7 +15,8 @@ from helper.errors import ProtoCSSError
 
 with open("config.json", "r") as file:
     config = json.load(file)
-    __static_path__ = config["STATIC_PATH"]
+    __static_path__ = config["DEFAULT_PATH"]
+
 
 def read_version():
     try:
