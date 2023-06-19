@@ -10,9 +10,16 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import time
 
-with open("config.json", "r") as file:
-    config = json.load(file)
-    __static_path__ = config["DEFAULT_PATH"]
+# WINDOWS
+if os.name == "nt":
+    with open("./config.json", "r") as file:
+        config = json.load(file)
+        __static_path__ = config["DEFAULT_PATH"]
+# LINUX & MAC
+elif os.name == "posix":
+    with open("config.json", "r") as file:
+        config = json.load(file)
+        __static_path__ = config["DEFAULT_PATH"]
 
 if __name__ == '__main__':
     path = __static_path__

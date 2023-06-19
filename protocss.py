@@ -14,15 +14,15 @@ from datetime import datetime
 from helper.errors import ProtoCSSError
 
 # WINDOWS
-with open("../config.json", "r") as file:
-    config = json.load(file)
-    __static_path__ = config["DEFAULT_PATH"]
-
-
-# MAC
-# with open("config.json", "r") as file:
-#     config = json.load(file)
-#     __static_path__ = config["DEFAULT_PATH"]
+if os.name == "nt":
+    with open("./config.json", "r") as file:
+        config = json.load(file)
+        __static_path__ = config["DEFAULT_PATH"]
+# LINUX & MAC
+elif os.name == "posix":
+    with open("config.json", "r") as file:
+        config = json.load(file)
+        __static_path__ = config["DEFAULT_PATH"]
 
 
 def read_version():
