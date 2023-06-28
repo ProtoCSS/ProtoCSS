@@ -8,11 +8,11 @@ ProtoCSS is a robust and easy-to-use superset of CSS that provides a streamlined
 
 ## Acknowledgements
 
- - [Documentation](https://github.com/Dcohen52/ProtoCSS/blob/main/Docs/DOCS.md)
- - [ProtoCSS CLI Documentation](https://github.com/Dcohen52/ProtoCSS/blob/main/Docs/CLI_DOCS.md)
- - [Shorthands Table](https://github.com/Dcohen52/ProtoCSS/blob/main/Docs/SHORTHANDS_TABLE.md)
- - [PD Shorthands Table](https://github.com/Dcohen52/ProtoCSS/blob/main/Docs/PD_SHORTHANDS_TABLE.md)
- - [Change Log](https://github.com/Dcohen52/ProtoCSS/blob/main/CHANGELOG.md)
+ - [Documentation](https://github.com/ProtoCSS/ProtoCSS/blob/main/Docs/DOCS.md)
+ - [ProtoCSS CLI Documentation](https://github.com/ProtoCSS/ProtoCSS/blob/main/Docs/CLI_DOCS.md)
+ - [Shorthands Table](https://github.com/ProtoCSS/ProtoCSS/blob/main/Docs/SHORTHANDS_TABLE.md)
+ - [PD Shorthands Table](https://github.com/ProtoCSS/ProtoCSS/blob/main/Docs/PD_SHORTHANDS_TABLE.md)
+ - [Change Log](https://github.com/ProtoCSS/ProtoCSS/blob/main/CHANGELOG.md)
 
 ## Features
 The ProtoCSS preprocessor offers a comprehensive set of user-friendly features designed to enhance the experience of working with CSS for developers of all skill levels. These features include:
