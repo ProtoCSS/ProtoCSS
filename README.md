@@ -4,15 +4,9 @@
 ![ProtoCSS Icon](https://github.com/Dcohen52/ProtoCSS/assets/26333525/7236ffed-8292-4009-85a8-c137fd19dd55)
 
 
-
-Welcome to ProtoCSS!
-
 :rocket: The website is under development.
 I'm excited to announce that the official website will be launched by the end of August!
-
-:computer: **Website URL:** https://www.protocss.dev/
-
-Stay tuned for exciting updates and sneak peeks as I prepare to unveil ProtoCSS to the world!
+Stay tuned for exciting updates and sneak peeks as I prepare to unveil ProtoCSS to the world.
 
 # ProtoCSS 
 [![Version](https://img.shields.io/badge/0.0.1-dev-blue)](https://github.com/Dcohen52/ProtoCSS/tree/main)
